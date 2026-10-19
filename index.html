@@ -3,54 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#060913">
-<title>NEXUS — Sistema Profissional de Evolução</title>
+<meta name="theme-color" content="#030712">
+<title>NEXUS — Sistema Pessoal de Evolução</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #060913;
-  --surface: rgba(16, 24, 43, 0.85);
-  --surface-solid: #10182b;
-  --border: rgba(6, 182, 212, 0.2);
-  --border-focus: rgba(6, 182, 212, 0.6);
-  --primary: #06b6d4;
-  --primary-glow: rgba(6, 182, 212, 0.25);
-  --accent: #3b82f6;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --text: #f0f4ff;
-  --muted: #8b9bb8;
-  --nav-height: 70px;
-  --radius: 18px;
+  --bg: #030712;
+  --surface: rgba(15, 23, 42, 0.85);
+  --surface-solid: #0f172a;
+  --border: rgba(56, 189, 248, 0.18);
+  --border-focus: rgba(56, 189, 248, 0.6);
+  --primary: #38bdf8;
+  --primary-glow: rgba(56, 189, 248, 0.25);
+  --accent: #818cf8;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --nav-height: 72px;
+  --radius: 20px;
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body {
   margin: 0; background: var(--bg);
-  background-image: radial-gradient(circle at 50% -10%, #172554 0%, var(--bg) 60%);
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(129, 140, 248, 0.06) 0%, transparent 40%);
   background-attachment: fixed; color: var(--text);
   font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh;
-  padding-bottom: calc(var(--nav-height) + 30px);
+  padding-bottom: calc(var(--nav-height) + 35px);
 }
 
-.app { max-width: 600px; margin: 0 auto; padding: 16px; }
+.app { max-width: 680px; margin: 0 auto; padding: 16px; }
 
-/* Top Header */
-.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+/* Topbar Profissional */
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .logo {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  width: 44px; height: 44px; border-radius: 14px;
+  background: linear-gradient(135deg, #0284c7, #4f46e5);
   display: grid; place-items: center; font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700; font-size: 20px; color: #fff; box-shadow: 0 0 20px var(--primary-glow);
-  border: 1px solid rgba(255,255,255,0.2);
+  font-weight: 700; font-size: 20px; color: #fff; box-shadow: 0 0 25px var(--primary-glow);
+  border: 1px solid rgba(255,255,255,0.25);
 }
-.brand h1 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: 2px; margin: 0; font-weight: 700; }
-.brand p { font-size: 9px; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; margin: 2px 0 0; font-weight: 700; }
+.brand h1 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; letter-spacing: 2px; margin: 0; font-weight: 700; }
+.brand p { font-size: 9.5px; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; margin: 2px 0 0; font-weight: 700; }
 
+.top-actions { display: flex; gap: 8px; }
 .icon-btn {
   background: var(--surface-solid); border: 1px solid var(--border); color: var(--muted);
   width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; cursor: pointer;
@@ -58,98 +61,99 @@ body {
 }
 .icon-btn:hover { color: var(--text); border-color: var(--primary); }
 
-/* Dashboard Card */
+/* Dashboard Card Principal */
 .card {
-  background: var(--surface); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border); border-radius: var(--radius); padding: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4); margin-bottom: 14px; position: relative; overflow: hidden;
+  background: var(--surface); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5); margin-bottom: 16px; position: relative; overflow: hidden;
 }
 .card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, transparent, var(--primary), transparent);
 }
 
-.level-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
+.level-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px; }
 .rank-tag {
-  background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3);
-  color: var(--primary); padding: 3px 10px; border-radius: 99px; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--primary); padding: 3px 12px; border-radius: 99px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
 }
-.level-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; margin-top: 2px; line-height: 1.1; }
+.level-title { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; margin-top: 4px; line-height: 1.1; }
 
-.progress-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #06b6d4); border-radius: 99px; width: 0%; transition: width 0.4s ease; }
+.progress-track { height: 10px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8, #818cf8); border-radius: 99px; width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-/* Grid de Estatísticas */
-.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-.stat-box { background: rgba(6, 9, 19, 0.6); border: 1px solid var(--border); border-radius: 14px; padding: 12px; text-align: center; }
-.stat-box .num { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); }
-.stat-box .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
+/* Grid de Atributos RPG (Complexidade Real) */
+.attributes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.attr-box { background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border); border-radius: 14px; padding: 12px 10px; text-align: center; }
+.attr-box .val { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: var(--primary); }
+.attr-box .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
 
-/* Navegação Inferior (Bottom Bar) */
+/* Navegação Profissional (Bottom Bar) */
 .bottom-nav {
   position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-height);
-  background: rgba(6, 9, 19, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  background: rgba(3, 7, 18, 0.94); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
   border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-around;
   align-items: center; z-index: 1000; padding-bottom: env(safe-area-inset-bottom);
 }
 .nav-btn {
   background: none; border: none; color: var(--muted); display: flex; flex-direction: column;
-  align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 6px 10px; cursor: pointer; transition: 0.2s;
+  align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: 0.2s;
 }
-.nav-btn .icon { font-size: 18px; }
-.nav-btn.active { color: var(--primary); text-shadow: 0 0 12px var(--primary-glow); }
+.nav-btn .icon { font-size: 20px; }
+.nav-btn.active { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
 
-/* Vistas */
+/* Views */
 .view { display: none; animation: fadeIn 0.25s ease; }
 .view.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; margin: 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin: 0; }
 
-/* Listas e Tarefas */
-.task-item {
-  background: rgba(6, 9, 19, 0.5); border: 1px solid var(--border); border-radius: 14px;
-  padding: 12px 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; transition: 0.2s;
+/* Elementos de Tarefas / Hábitos / Loja */
+.item-card {
+  background: rgba(3, 7, 18, 0.5); border: 1px solid var(--border); border-radius: 16px;
+  padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; transition: 0.2s;
 }
-.task-item:hover { border-color: var(--border-focus); }
+.item-card:hover { border-color: var(--border-focus); background: rgba(15, 23, 42, 0.6); }
 .checkbox {
-  width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--primary);
+  width: 24px; height: 24px; border-radius: 8px; border: 2px solid var(--primary);
   background: transparent; display: grid; place-items: center; cursor: pointer; flex-shrink: 0; transition: 0.2s; color: transparent;
 }
-.task-item.done .checkbox { background: var(--primary); color: #000; font-weight: 800; font-size: 12px; box-shadow: 0 0 10px var(--primary-glow); }
-.task-item.done .task-title { text-decoration: line-through; color: var(--muted); }
-.task-info { flex: 1; min-width: 0; }
-.task-title { font-weight: 600; font-size: 13.5px; }
-.task-meta { font-size: 11px; color: var(--muted); margin-top: 2px; display: flex; gap: 8px; }
+.item-card.done .checkbox { background: var(--primary); color: #030712; font-weight: 800; font-size: 13px; box-shadow: 0 0 12px var(--primary-glow); }
+.item-card.done .item-title { text-decoration: line-through; color: var(--muted); }
+.item-info { flex: 1; min-width: 0; }
+.item-title { font-weight: 600; font-size: 14px; }
+.item-meta { font-size: 11.5px; color: var(--muted); margin-top: 3px; display: flex; gap: 8px; align-items: center; }
 
 /* Botões e Formulários */
 .btn {
-  background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; border: none;
-  border-radius: 12px; padding: 11px 16px; font-weight: 700; font-size: 13px;
+  background: linear-gradient(135deg, #0284c7, #4f46e5); color: #fff; border: none;
+  border-radius: 14px; padding: 12px 18px; font-weight: 700; font-size: 13.5px;
   cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-  box-shadow: 0 4px 15px var(--primary-glow); transition: 0.2s;
+  box-shadow: 0 6px 20px var(--primary-glow); transition: 0.2s;
 }
 .btn:active { transform: scale(0.98); }
-.btn.danger { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 4px 15px rgba(220,38,38,0.3); }
+.btn.danger { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 6px 20px rgba(220,38,38,0.3); }
+.btn.secondary { background: rgba(255,255,255,0.06); border: 1px solid var(--border); box-shadow: none; color: var(--text); }
 
-.form-group { margin-bottom: 12px; }
-.form-group label { display: block; font-size: 10.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
-.input {
-  width: 100%; background: rgba(6, 9, 19, 0.7); border: 1px solid var(--border);
-  border-radius: 11px; padding: 10px 12px; color: var(--text); font-size: 13.5px; outline: none; transition: 0.2s;
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+.input, select {
+  width: 100%; background: rgba(3, 7, 18, 0.7); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 14px; color: var(--text); font-size: 14px; outline: none; transition: 0.2s;
 }
-.input:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
+.input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); }
 
-/* Pomodoro Timer */
-.timer-display { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; text-align: center; margin: 15px 0; text-shadow: 0 0 20px var(--primary-glow); }
-.timer-controls { display: flex; gap: 8px; margin-top: 14px; }
+/* Pomodoro Engine */
+.timer-display { font-family: 'Space Grotesk', sans-serif; font-size: 60px; font-weight: 700; text-align: center; margin: 20px 0; text-shadow: 0 0 25px var(--primary-glow); }
+.timer-controls { display: flex; gap: 10px; margin-top: 16px; }
 
-/* Toast Notification */
+/* Toast */
 .toast {
-  position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%) translateY(20px);
-  background: #10182b; color: #fff; padding: 10px 18px; border-radius: 12px; font-weight: 700;
-  font-size: 13px; border: 1px solid rgba(6, 182, 212, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: #0f172a; color: #fff; padding: 12px 20px; border-radius: 14px; font-weight: 700;
+  font-size: 13.5px; border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.7);
   opacity: 0; pointer-events: none; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2000;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -163,13 +167,16 @@ body {
       <div class="logo">N</div>
       <div>
         <h1>NEXUS</h1>
-        <p>Pro Engine v3.0</p>
+        <p>Elite Engine v4.0</p>
       </div>
     </div>
-    <button class="icon-btn" onclick="switchView('settings')" title="Configurações">⚙</button>
+    <div class="top-actions">
+      <button class="icon-btn" onclick="exportBackup()" title="Exportar Backup">↗</button>
+      <button class="icon-btn" onclick="switchView('settings')" title="Configurações">⚙</button>
+    </div>
   </header>
 
-  <!-- Hero Status -->
+  <!-- Dashboard Principal -->
   <section class="card">
     <div class="level-row">
       <div>
@@ -177,32 +184,32 @@ body {
         <div class="level-title" id="levelLabel">Nível 1</div>
       </div>
       <div style="text-align: right;">
-        <div style="font-size: 9px; color: var(--muted); font-weight: 700; text-transform: uppercase;">XP Disponível</div>
-        <div style="font-size: 20px; font-weight: 700; color: var(--primary); font-family: 'Space Grotesk';" id="statAvailableXP">0</div>
+        <div style="font-size: 9.5px; color: var(--muted); font-weight: 700; text-transform: uppercase;">XP Disponível</div>
+        <div style="font-size: 22px; font-weight: 700; color: var(--primary); font-family: 'Space Grotesk';" id="statAvailableXP">0</div>
       </div>
     </div>
-    <div class="progress-track" style="margin-top: 10px;">
+    <div class="progress-track" style="margin-top: 12px;">
       <div class="progress-fill" id="xpBar"></div>
     </div>
-    <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin-top: 5px; font-weight: 600;">
+    <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; font-weight: 600;">
       <span id="xpLabel">0 / 100 XP</span>
-      <span>Evolução contínua</span>
+      <span id="nextRankNotice">Próximo rank em 100 XP</span>
     </div>
   </section>
 
-  <!-- Métricas Rápidas -->
-  <div class="stats-grid">
-    <div class="stat-box">
-      <div class="num" id="statDoneCount">0/0</div>
-      <div class="lbl">Missões Hoje</div>
+  <!-- Atributos RPG Reais -->
+  <div class="attributes-grid">
+    <div class="attr-box">
+      <div class="val" id="attrFocus">0 XP</div>
+      <div class="lbl">⚡ Foco</div>
     </div>
-    <div class="stat-box">
-      <div class="num" id="statFocusTime">0m</div>
-      <div class="lbl">Foco Hoje</div>
+    <div class="attr-box">
+      <div class="val" id="attrBody">0 XP</div>
+      <div class="lbl">🛡️ Vitalidade</div>
     </div>
-    <div class="stat-box">
-      <div class="num" id="statStreak">0 dias</div>
-      <div class="lbl">Consistência</div>
+    <div class="attr-box">
+      <div class="val" id="attrMind">0 XP</div>
+      <div class="lbl">🧠 Sabedoria</div>
     </div>
   </div>
 
@@ -210,14 +217,14 @@ body {
     <!-- VIEW: INÍCIO -->
     <section class="view active" id="view-home">
       <div class="section-header">
-        <h2>Painel Principal</h2>
-        <button class="btn" style="width: auto; padding: 6px 12px; font-size: 11.5px;" onclick="switchView('missions')">＋ Nova Missão</button>
+        <h2>Missões do Dia</h2>
+        <button class="btn secondary" style="width: auto; padding: 6px 12px; font-size: 11.5px;" onclick="switchView('missions')">＋ Nova</button>
       </div>
       <div id="homeMissions"></div>
       
-      <div class="section-header" style="margin-top: 20px;">
+      <div class="section-header" style="margin-top: 22px;">
         <h2>Hábitos Diários</h2>
-        <button class="btn" style="width: auto; padding: 6px 12px; font-size: 11.5px;" onclick="switchView('habits')">Gerenciar</button>
+        <button class="btn secondary" style="width: auto; padding: 6px 12px; font-size: 11.5px;" onclick="switchView('habits')">Gerenciar</button>
       </div>
       <div id="homeHabits"></div>
     </section>
@@ -229,25 +236,27 @@ body {
         <form id="missionForm">
           <div class="form-group">
             <label>O que precisa ser feito?</label>
-            <input class="input" id="missionTitle" placeholder="Ex: Terminar relatório ou treinar" required>
+            <input class="input" id="missionTitle" placeholder="Ex: Entregar relatório trimestral" required>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <div class="form-group">
-              <label>Categoria</label>
-              <select class="input" id="missionCategory">
-                <option>Trabalho</option><option>Estudos</option><option>Exercício</option><option>Autocuidado</option>
+              <label>Atributo Afetado</label>
+              <select class="input" id="missionAttr">
+                <option value="focus">⚡ Foco & Produtividade</option>
+                <option value="body">🛡️ Vitalidade & Saúde</option>
+                <option value="mind">🧠 Sabedoria & Estudos</option>
               </select>
             </div>
             <div class="form-group">
               <label>Recompensa XP</label>
               <select class="input" id="missionXP">
-                <option value="10">Fácil (10 XP)</option>
-                <option value="20" selected>Médio (20 XP)</option>
-                <option value="40">Difícil (40 XP)</option>
+                <option value="15">Fácil (15 XP)</option>
+                <option value="30" selected>Médio (30 XP)</option>
+                <option value="50">Difícil (50 XP)</option>
               </select>
             </div>
           </div>
-          <button class="btn" type="submit">⚡ Adicionar Missão</button>
+          <button class="btn" type="submit">⚡ Criar Missão</button>
         </form>
       </div>
       <div id="missionList"></div>
@@ -255,14 +264,22 @@ body {
 
     <!-- VIEW: HÁBITOS -->
     <section class="view" id="view-habits">
-      <div class="section-header"><h2>Hábitos Diários</h2></div>
+      <div class="section-header"><h2>Hábitos Constantes</h2></div>
       <div class="card" style="margin-bottom: 16px;">
         <form id="habitForm">
           <div class="form-group">
-            <label>Novo Hábito</label>
-            <input class="input" id="habitTitle" placeholder="Ex: Ler 10 páginas / Beber água" required>
+            <label>Nome do Hábito</label>
+            <input class="input" id="habitTitle" placeholder="Ex: Meditar 10 minutos / Ler 15 páginas" required>
           </div>
-          <button class="btn" type="submit">＋ Criar Hábito</button>
+          <div class="form-group">
+            <label>Atributo Associado</label>
+            <select class="input" id="habitAttr">
+              <option value="mind">🧠 Sabedoria</option>
+              <option value="focus">⚡ Foco</option>
+              <option value="body">🛡️ Vitalidade</option>
+            </select>
+          </div>
+          <button class="btn" type="submit">＋ Adicionar Hábito</button>
         </form>
       </div>
       <div id="habitList"></div>
@@ -270,13 +287,13 @@ body {
 
     <!-- VIEW: FOCO -->
     <section class="view" id="view-focus">
-      <div class="section-header"><h2>Modo Foco (Pomodoro)</h2></div>
+      <div class="section-header"><h2>Modo Foco Profissional</h2></div>
       <div class="card" style="text-align: center;">
         <div class="timer-display" id="timerFace">25:00</div>
-        <div style="color: var(--muted); font-size: 12px;" id="timerStatus">Pronto para iniciar foco absoluto</div>
+        <div style="color: var(--muted); font-size: 12px; font-weight: 600;" id="timerStatus">Pronto para imersão absoluta</div>
         <div class="timer-controls">
           <button class="btn" id="timerStartBtn" onclick="toggleTimer()">▶ Iniciar Foco</button>
-          <button class="btn" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border);" onclick="resetTimer()">↺ Reset</button>
+          <button class="btn secondary" onclick="resetTimer()">↺ Resetar</button>
         </div>
       </div>
     </section>
@@ -284,24 +301,27 @@ body {
     <!-- VIEW: RECOMPENSAS -->
     <section class="view" id="view-rewards">
       <div class="section-header"><h2>Loja de Recompensas</h2></div>
-      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Gasta o teu XP ganho com esforço real para resgatar momentos de lazer sem culpa.</p>
+      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Utilize o seu XP conquistado com esforço real para destravar pausas e lazer sem culpa.</p>
       <div class="card" style="margin-bottom: 16px;">
         <form id="rewardForm">
-          <div class="form-group"><label>Recompensa</label><input class="input" id="rewardTitle" placeholder="Ex: 1 Episódio de Série" required></div>
-          <div class="form-group"><label>Custo em XP</label><input class="input" type="number" id="rewardCost" value="50" required></div>
-          <button class="btn" type="submit">🎁 Adicionar à Loja</button>
+          <div class="form-group"><label>Recompensa</label><input class="input" id="rewardTitle" placeholder="Ex: 1 Episódio de Série / Jogo" required></div>
+          <div class="form-group"><label>Custo em XP</label><input class="input" type="number" id="rewardCost" value="80" required></div>
+          <button class="btn" type="submit">🎁 Adicionar Prémio</button>
         </form>
       </div>
       <div id="rewardList"></div>
     </section>
 
-    <!-- VIEW: AJUSTES -->
+    <!-- VIEW: CONFIGURAÇÕES -->
     <section class="view" id="view-settings">
-      <div class="section-header"><h2>Configurações & Dados</h2></div>
+      <div class="section-header"><h2>Definições & Dados</h2></div>
       <div class="card">
-        <p style="font-size: 13px; color: var(--muted); margin-top: 0;">Os teus dados estão protegidos e salvos localmente neste aparelho.</p>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 0;">O NEXUS opera 100% no seu dispositivo com criptografia local. Faça cópias de segurança periódicas.</p>
         <div style="display: grid; gap: 10px;">
-          <button class="btn" onclick="exportBackup()">↗ Exportar Backup JSON</button>
+          <button class="btn secondary" onclick="exportBackup()">↗ Exportar Backup Completo (JSON)</button>
+          <label class="btn secondary" style="cursor:pointer; text-align:center;">📥 Importar Backup
+            <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importBackup(event)">
+          </label>
           <button class="btn danger" onclick="resetAllData()">🗑 Apagar Todos os Dados</button>
         </div>
       </div>
@@ -309,7 +329,7 @@ body {
   </main>
 </div>
 
-<!-- Bottom Navigation Bar -->
+<!-- Navegação Inferior Profissional -->
 <nav class="bottom-nav">
   <button class="nav-btn active" onclick="switchView('home')"><span class="icon">⌂</span><span>Início</span></button>
   <button class="nav-btn" onclick="switchView('missions')"><span class="icon">⚔️</span><span>Missões</span></button>
@@ -321,26 +341,26 @@ body {
 <div id="toast" class="toast"></div>
 
 <script>
-const STORAGE_KEY = 'nexus_pro_engine_v3';
+const STORAGE_KEY = 'nexus_elite_engine_v4';
 const todayStr = () => new Date().toISOString().slice(0, 10);
 
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
   xpTotal: 0,
   xpSpent: 0,
+  attributes: { focus: 0, body: 0, mind: 0 },
   missions: [
-    { id: '1', title: 'Definir as 3 prioridades do dia', category: 'Trabalho', xp: 15, done: false },
-    { id: '2', title: 'Movimentar o corpo por 15 minutos', category: 'Exercício', xp: 20, done: false }
+    { id: '1', title: 'Estruturar o planejamento estratégico da semana', attr: 'focus', xp: 30, done: false },
+    { id: '2', title: 'Treinamento físico de alta intensidade (30 min)', attr: 'body', xp: 30, done: false }
   ],
   habits: [
-    { id: 'h1', title: 'Beber 2L de Água', xp: 10, logs: [] },
-    { id: 'h2', title: 'Leitura focada (15 min)', xp: 15, logs: [] }
+    { id: 'h1', title: 'Leitura técnica diária (15 min)', attr: 'mind', xp: 20, logs: [] },
+    { id: 'h2', title: 'Hidratação controlada (2L+)', attr: 'body', xp: 15, logs: [] }
   ],
   rewards: [
-    { id: 'r1', title: '1 Episódio de Série / Anime', cost: 60 },
-    { id: 'r2', title: '30 min de Lazer Livre', cost: 100 }
+    { id: 'r1', title: '1 Episódio de Série sem culpa', cost: 70 },
+    { id: 'r2', title: 'Lazer livre de 1 hora', cost: 120 }
   ],
-  focusSessions: [],
-  streakDays: []
+  focusSessions: []
 };
 
 function saveState() {
@@ -352,7 +372,7 @@ function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2600);
+  setTimeout(() => t.classList.remove('show'), 2800);
 }
 
 function switchView(id) {
@@ -364,10 +384,10 @@ function switchView(id) {
 }
 
 function computeLevel() {
-  const level = Math.floor(state.xpTotal / 100) + 1;
-  const currentXP = state.xpTotal % 100;
+  const level = Math.floor(state.xpTotal / 120) + 1;
+  const currentXP = state.xpTotal % 120;
   const availableXP = state.xpTotal - state.xpSpent;
-  const rank = level >= 15 ? 'Lenda' : level >= 8 ? 'Elite' : level >= 4 ? 'Veterano' : level >= 2 ? 'Explorador' : 'Recruta';
+  const rank = level >= 20 ? 'Lenda Mítica' : level >= 12 ? 'Mestre Absoluto' : level >= 7 ? 'Veterano Elite' : level >= 3 ? 'Explorador' : 'Recruta';
   return { level, currentXP, availableXP, rank };
 }
 
@@ -376,58 +396,58 @@ function renderAll() {
   document.getElementById('levelLabel').textContent = `Nível ${info.level}`;
   document.getElementById('rankPill').textContent = '◆ ' + info.rank;
   document.getElementById('statAvailableXP').textContent = info.availableXP;
-  document.getElementById('xpLabel').textContent = `${info.currentXP} / 100 XP`;
-  document.getElementById('xpBar').style.width = info.currentXP + '%';
+  document.getElementById('xpLabel').textContent = `${info.currentXP} / 120 XP`;
+  document.getElementById('xpBar').style.width = Math.min(100, (info.currentXP / 120) * 100) + '%';
 
-  const doneMissions = state.missions.filter(m => m.done).length;
-  document.getElementById('statDoneCount').textContent = `${doneMissions}/${state.missions.length}`;
+  // Atributos RPG
+  document.getElementById('attrFocus').textContent = state.attributes.focus + ' XP';
+  document.getElementById('attrBody').textContent = state.attributes.body + ' XP';
+  document.getElementById('attrMind').textContent = state.attributes.mind + ' XP';
 
-  const todayFocus = state.focusSessions.filter(s => s.date === todayStr()).reduce((acc, s) => acc + s.mins, 0);
-  document.getElementById('statFocusTime').textContent = todayFocus + 'm';
-
-  document.getElementById('statStreak').textContent = state.streakDays.length + ' dias';
-
+  // Missões
   const missionHTML = state.missions.length ? state.missions.map(m => `
-    <div class="task-item ${m.done ? 'done' : ''}">
+    <div class="item-card ${m.done ? 'done' : ''}">
       <div class="checkbox" onclick="toggleMission('${m.id}')">${m.done ? '✓' : ''}</div>
-      <div class="task-info">
-        <div class="task-title">${m.title}</div>
-        <div class="task-meta"><span>${m.category}</span><span>•</span><span style="color:var(--primary)">+${m.xp} XP</span></div>
+      <div class="item-info">
+        <div class="item-title">${m.title}</div>
+        <div class="item-meta"><span style="text-transform:uppercase">${m.attr}</span><span>•</span><span style="color:var(--primary)">+${m.xp} XP</span></div>
       </div>
-      <button class="icon-btn" style="width:30px;height:30px;font-size:12px;" onclick="deleteMission('${m.id}')">✕</button>
+      <button class="icon-btn" style="width:32px;height:32px;font-size:12px;" onclick="deleteMission('${m.id}')">✕</button>
     </div>
-  `).join('') : '<div style="color:var(--muted);text-align:center;padding:15px;font-size:13px;">Sem missões cadastradas.</div>';
+  `).join('') : '<div style="color:var(--muted);text-align:center;padding:20px;font-size:13px;">Nenhuma missão ativa.</div>';
 
   document.getElementById('homeMissions').innerHTML = missionHTML;
   document.getElementById('missionList').innerHTML = missionHTML;
 
+  // Hábitos
   const t = todayStr();
   const habitHTML = state.habits.length ? state.habits.map(h => {
     const checked = h.logs.includes(t);
     return `
-      <div class="task-item ${checked ? 'done' : ''}">
+      <div class="item-card ${checked ? 'done' : ''}">
         <div class="checkbox" onclick="toggleHabit('${h.id}')">${checked ? '✓' : ''}</div>
-        <div class="task-info">
-          <div class="task-title">${h.title}</div>
-          <div class="task-meta"><span style="color:var(--success)">+${h.xp} XP diário</span></div>
+        <div class="item-info">
+          <div class="item-title">${h.title}</div>
+          <div class="item-meta"><span style="color:var(--success)">+${h.xp} XP diário</span></div>
         </div>
-        <button class="icon-btn" style="width:30px;height:30px;font-size:12px;" onclick="deleteHabit('${h.id}')">✕</button>
+        <button class="icon-btn" style="width:32px;height:32px;font-size:12px;" onclick="deleteHabit('${h.id}')">✕</button>
       </div>
     `;
-  }).join('') : '<div style="color:var(--muted);text-align:center;padding:15px;font-size:13px;">Sem hábitos ativos.</div>';
+  }).join('') : '<div style="color:var(--muted);text-align:center;padding:20px;font-size:13px;">Nenhum hábito cadastrado.</div>';
 
   document.getElementById('homeHabits').innerHTML = habitHTML;
   document.getElementById('habitList').innerHTML = habitHTML;
 
+  // Recompensas
   document.getElementById('rewardList').innerHTML = state.rewards.length ? state.rewards.map(r => `
-    <div class="task-item">
-      <div class="task-info">
-        <div class="task-title">${r.title}</div>
-        <div class="task-meta" style="color:var(--warning)">Custo: ${r.cost} XP disponível</div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-title">${r.title}</div>
+        <div class="item-meta" style="color:var(--warning)">Custo: ${r.cost} XP</div>
       </div>
-      <button class="btn" style="width:auto;padding:6px 12px;font-size:12px;" onclick="buyReward('${r.id}', ${r.cost})">Resgatar</button>
+      <button class="btn" style="width:auto;padding:8px 14px;font-size:12px;" onclick="buyReward('${r.id}', ${r.cost})">Resgatar</button>
     </div>
-  `).join('') : '<div style="color:var(--muted);text-align:center;padding:15px;font-size:13px;">Nenhuma recompensa cadastrada.</div>';
+  `).join('') : '<div style="color:var(--muted);text-align:center;padding:20px;font-size:13px;">Nenhuma recompensa ativa.</div>';
 }
 
 function toggleMission(id) {
@@ -436,10 +456,11 @@ function toggleMission(id) {
   m.done = !m.done;
   if (m.done) {
     state.xpTotal += m.xp;
-    showToast(`Missão concluída! +${m.xp} XP`);
-    if (!state.streakDays.includes(todayStr())) state.streakDays.push(todayStr());
+    state.attributes[m.attr] = (state.attributes[m.attr] || 0) + m.xp;
+    showToast(`Missão concluída! +${m.xp} XP (${m.attr.toUpperCase()})`);
   } else {
     state.xpTotal = Math.max(0, state.xpTotal - m.xp);
+    state.attributes[m.attr] = Math.max(0, state.attributes[m.attr] - m.xp);
   }
   saveState();
 }
@@ -456,12 +477,13 @@ function toggleHabit(id) {
   if (h.logs.includes(t)) {
     h.logs = h.logs.filter(d => d !== t);
     state.xpTotal = Math.max(0, state.xpTotal - h.xp);
+    state.attributes[h.attr] = Math.max(0, state.attributes[h.attr] - h.xp);
     showToast('Hábito desmarcado.');
   } else {
     h.logs.push(t);
     state.xpTotal += h.xp;
+    state.attributes[h.attr] = (state.attributes[h.attr] || 0) + h.xp;
     showToast(`Hábito cumprido! +${h.xp} XP`);
-    if (!state.streakDays.includes(t)) state.streakDays.push(t);
   }
   saveState();
 }
@@ -478,27 +500,28 @@ function buyReward(id, cost) {
     showToast('Recompensa resgatada com sucesso! Aproveite!');
     saveState();
   } else {
-    showToast('XP insuficiente para este prêmio.');
+    showToast('XP insuficiente para este prémio.');
   }
 }
 
 document.getElementById('missionForm').onsubmit = (e) => {
   e.preventDefault();
   const title = document.getElementById('missionTitle').value.trim();
-  const category = document.getElementById('missionCategory').value;
+  const attr = document.getElementById('missionAttr').value;
   const xp = Number(document.getElementById('missionXP').value);
   if (!title) return;
-  state.missions.unshift({ id: Date.now().toString(), title, category, xp, done: false });
+  state.missions.unshift({ id: Date.now().toString(), title, attr, xp, done: false });
   e.target.reset();
   saveState();
-  showToast('Missão criada.');
+  showToast('Missão criada com sucesso.');
 };
 
 document.getElementById('habitForm').onsubmit = (e) => {
   e.preventDefault();
   const title = document.getElementById('habitTitle').value.trim();
+  const attr = document.getElementById('habitAttr').value;
   if (!title) return;
-  state.habits.push({ id: Date.now().toString(), title, xp: 15, logs: [] });
+  state.habits.push({ id: Date.now().toString(), title, attr, xp: 20, logs: [] });
   e.target.reset();
   saveState();
   showToast('Hábito criado.');
@@ -512,9 +535,10 @@ document.getElementById('rewardForm').onsubmit = (e) => {
   state.rewards.push({ id: Date.now().toString(), title, cost });
   e.target.reset();
   saveState();
-  showToast('Recompensa adicionada.');
+  showToast('Recompensa adicionada à loja.');
 };
 
+// Pomodoro Engine
 let timerSecs = 25 * 60, timerInterval = null, timerRunning = false;
 function updateTimerFace() {
   const m = Math.floor(timerSecs / 60), s = timerSecs % 60;
@@ -531,7 +555,7 @@ function toggleTimer() {
   } else {
     timerRunning = true;
     btn.textContent = '⏸ Pausar';
-    document.getElementById('timerStatus').textContent = 'Concentração total em andamento...';
+    document.getElementById('timerStatus').textContent = 'Imersão de alta performance em curso...';
     timerInterval = setInterval(() => {
       if (timerSecs > 0) {
         timerSecs--;
@@ -540,9 +564,9 @@ function toggleTimer() {
         clearInterval(timerInterval);
         timerRunning = false;
         btn.textContent = '▶ Iniciar Foco';
-        state.focusSessions.push({ date: todayStr(), mins: 25 });
-        state.xpTotal += 25;
-        showToast('Sessão de foco concluída! +25 XP');
+        state.xpTotal += 40;
+        state.attributes.focus += 40;
+        showToast('Sessão de foco concluída! +40 XP (FOCO)');
         saveState();
         timerSecs = 25 * 60;
         updateTimerFace();
@@ -557,7 +581,7 @@ function resetTimer() {
   timerSecs = 25 * 60;
   updateTimerFace();
   document.getElementById('timerStartBtn').textContent = '▶ Iniciar Foco';
-  document.getElementById('timerStatus').textContent = 'Pronto para iniciar foco absoluto';
+  document.getElementById('timerStatus').textContent = 'Pronto para imersão absoluta';
 }
 
 function exportBackup() {
@@ -565,11 +589,32 @@ function exportBackup() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `nexus_backup_${todayStr()}.json`; a.click();
   URL.revokeObjectURL(url);
-  showToast('Backup gerado com sucesso.');
+  showToast('Backup gerado e baixado com sucesso.');
+}
+
+function importBackup(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (parsed && typeof parsed.xpTotal === 'number' && Array.isArray(parsed.missions)) {
+        state = parsed;
+        saveState();
+        showToast('Backup importado com sucesso!');
+      } else {
+        showToast('Arquivo de backup inválido.');
+      }
+    } catch {
+      showToast('Erro ao processar ficheiro JSON.');
+    }
+  };
+  reader.readAsText(file);
 }
 
 function resetAllData() {
-  if (confirm('Tem a certeza absoluta? Todos os dados serão apagados.')) {
+  if (confirm('Tem a certeza absoluta? Todos os dados, XP e atributos serão permanentemente eliminados.')) {
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   }
