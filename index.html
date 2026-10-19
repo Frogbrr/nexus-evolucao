@@ -5,20 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#030712">
 <title>NEXUS — Solo System</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #030712;
-  --surface: rgba(15, 23, 42, 0.88);
+  --surface: rgba(15, 23, 42, 0.9);
   --surface-solid: #0f172a;
-  --border: rgba(56, 189, 248, 0.2);
-  --border-focus: rgba(56, 189, 248, 0.6);
+  --border: rgba(56, 189, 248, 0.25);
   --primary: #38bdf8;
-  --primary-glow: rgba(56, 189, 248, 0.3);
+  --primary-glow: rgba(56, 189, 248, 0.35);
   --danger: #ef4444;
-  --danger-glow: rgba(239, 68, 68, 0.3);
+  --danger-glow: rgba(239, 68, 68, 0.4);
   --success: #34d399;
   --warning: #fbbf24;
   --text: #f8fafc;
@@ -31,8 +28,8 @@
 body {
   margin: 0; background: var(--bg);
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(239, 68, 68, 0.05) 0%, transparent 40%);
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(239, 68, 68, 0.08) 0%, transparent 40%);
   background-attachment: fixed; color: var(--text);
   font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh;
   padding-bottom: calc(var(--nav-height) + 35px);
@@ -40,68 +37,50 @@ body {
 
 .app { max-width: 680px; margin: 0 auto; padding: 16px; }
 
-/* Topbar Estilo Alerta do Sistema */
+/* Topbar Sistema */
 .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .logo {
-  width: 44px; height: 44px; border-radius: 14px;
+  width: 46px; height: 46px; border-radius: 14px;
   background: linear-gradient(135deg, #0284c7, #ef4444);
   display: grid; place-items: center; font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700; font-size: 20px; color: #fff; box-shadow: 0 0 25px var(--danger-glow);
-  border: 1px solid rgba(239,68,68,0.4);
+  font-weight: 700; font-size: 22px; color: #fff; box-shadow: 0 0 25px var(--danger-glow);
+  border: 1px solid rgba(239,68,68,0.5);
 }
-.brand h1 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; letter-spacing: 2px; margin: 0; font-weight: 700; }
-.brand p { font-size: 9.5px; color: var(--danger); letter-spacing: 1.5px; text-transform: uppercase; margin: 2px 0 0; font-weight: 700; }
+.brand h1 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; letter-spacing: 2px; margin: 0; font-weight: 700; }
+.brand p { font-size: 10px; color: var(--danger); letter-spacing: 1.5px; text-transform: uppercase; margin: 2px 0 0; font-weight: 700; }
 
-.icon-btn {
-  background: var(--surface-solid); border: 1px solid var(--border); color: var(--muted);
-  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; cursor: pointer;
-  transition: 0.2s;
-}
-.icon-btn:hover { color: var(--text); border-color: var(--primary); }
-
-/* Interface estilo Janela Azul do Sistema */
+/* Janela Azul do Sistema */
 .card {
   background: var(--surface); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.6); margin-bottom: 16px; position: relative; overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7); margin-bottom: 16px; position: relative; overflow: hidden;
 }
-.card.alert-card { border-color: rgba(239, 68, 68, 0.4); background: rgba(15, 23, 42, 0.92); }
-.card.alert-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--danger), transparent);
-}
-.card:not(.alert-card)::before {
+.card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, transparent, var(--primary), transparent);
 }
 
 .level-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px; }
 .rank-tag {
-  background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3);
-  color: var(--primary); padding: 3px 12px; border-radius: 99px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--primary); padding: 4px 12px; border-radius: 99px; font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
 }
-.level-title { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; margin-top: 4px; line-height: 1.1; }
+.level-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin-top: 4px; line-height: 1.1; }
 
-.progress-track { height: 10px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
+.progress-track { height: 10px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
 .progress-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8); border-radius: 99px; width: 0%; transition: width 0.5s ease; }
 
-/* Status do Jogador */
-.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-.stat-box { background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border); border-radius: 14px; padding: 12px; text-align: center; }
-.stat-box .val { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary); }
-.stat-box .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
-
-/* Navegação Estilo HUD */
+/* Navegação HUD */
 .bottom-nav {
   position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-height);
-  background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+  background: rgba(3, 7, 18, 0.96); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
   border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-around;
   align-items: center; z-index: 1000; padding-bottom: env(safe-area-inset-bottom);
 }
 .nav-btn {
   background: none; border: none; color: var(--muted); display: flex; flex-direction: column;
-  align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: 0.2s;
+  align-items: center; gap: 3px; font-size: 10.5px; font-weight: 600; padding: 6px 14px; cursor: pointer; transition: 0.2s;
 }
 .nav-btn .icon { font-size: 20px; }
 .nav-btn.active { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
@@ -113,12 +92,12 @@ body {
 .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin: 0; }
 
-/* Missões Automáticas do Sistema */
+/* Missões Automáticas */
 .quest-card {
-  background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border); border-radius: 16px;
+  background: rgba(3, 7, 18, 0.65); border: 1px solid var(--border); border-radius: 16px;
   padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; transition: 0.2s;
 }
-.quest-card.completed { border-color: var(--success); background: rgba(52, 211, 153, 0.05); }
+.quest-card.completed { border-color: var(--success); background: rgba(52, 211, 153, 0.06); }
 .quest-checkbox {
   width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--primary);
   background: transparent; display: grid; place-items: center; cursor: pointer; flex-shrink: 0; transition: 0.2s; color: transparent;
@@ -129,28 +108,26 @@ body {
 .quest-title { font-weight: 700; font-size: 14.5px; margin-bottom: 4px; }
 .quest-desc { font-size: 11.5px; color: var(--muted); }
 
-/* Alerta de Punição */
+/* Banner Penalidade */
 .penalty-banner {
-  background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.5);
   border-radius: 14px; padding: 14px; margin-bottom: 16px; color: #fca5a5; font-size: 13px; font-weight: 600;
   display: flex; align-items: center; gap: 12px;
 }
 
-/* Botões do Sistema */
 .btn {
   background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; border: none;
   border-radius: 14px; padding: 12px 18px; font-weight: 700; font-size: 13.5px;
   cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
   box-shadow: 0 6px 20px var(--primary-glow); transition: 0.2s;
 }
-.btn:active { transform: scale(0.98); }
 .btn.danger { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 6px 20px rgba(220,38,38,0.3); }
 
-/* Toast Alerta HUD */
+/* Alerta HUD Toast */
 .toast {
   position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
   background: #0f172a; color: #fff; padding: 12px 20px; border-radius: 14px; font-weight: 700;
-  font-size: 13.5px; border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+  font-size: 13.5px; border: 1px solid rgba(56, 189, 248, 0.5); box-shadow: 0 15px 40px rgba(0,0,0,0.8);
   opacity: 0; pointer-events: none; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2000;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -164,15 +141,12 @@ body {
       <div class="logo">⚡</div>
       <div>
         <h1>SYSTEM</h1>
-        <p>Solo Leveling Engine</p>
+        <p>Solo Leveling Protocol v7</p>
       </div>
-    </div>
-    <div class="top-actions">
-      <button class="icon-btn" onclick="switchView('settings')" title="Definições">⚙</button>
     </div>
   </header>
 
-  <!-- Janela de Status do Jogador -->
+  <!-- Status Janela do Sistema -->
   <section class="card">
     <div class="level-row">
       <div>
@@ -180,7 +154,7 @@ body {
         <div class="level-title" id="levelLabel">Nível 1</div>
       </div>
       <div style="text-align: right;">
-        <div style="font-size: 9.5px; color: var(--muted); font-weight: 700; text-transform: uppercase;">XP Acumulado</div>
+        <div style="font-size: 9.5px; color: var(--muted); font-weight: 700; text-transform: uppercase;">XP Disponível</div>
         <div style="font-size: 22px; font-weight: 700; color: var(--primary); font-family: 'Space Grotesk';" id="statXP">0</div>
       </div>
     </div>
@@ -188,66 +162,60 @@ body {
       <div class="progress-fill" id="xpBar"></div>
     </div>
     <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; font-weight: 600;">
-      <span id="xpLabel">0 / 100 XP para Subir de Nível</span>
+      <span id="xpLabel">0 / 100 XP</span>
       <span id="penaltyCounter" style="color:var(--danger)">Punições: 0</span>
     </div>
   </section>
 
-  <!-- Painel de Punição Ativa (Caso haja falha anterior) -->
   <div id="penaltyBannerContainer"></div>
 
   <main>
-    <!-- VIEW: MISSÕES DIÁRIAS (GERADAS PELO SISTEMA) -->
+    <!-- VIEW: MISSÕES DO SISTEMA -->
     <section class="view active" id="view-quests">
       <div class="section-header">
-        <h2>⚔️ Missões Diárias Obrigatórias</h2>
-        <span class="rank-tag" style="color:var(--warning); border-color:var(--warning)">Expira à Meia-Noite</span>
+        <h2>⚔️ Missões Diárias do Sistema</h2>
+        <span class="rank-tag" style="color:var(--warning); border-color:var(--warning)">Gerado Automaticamente</span>
       </div>
       <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 16px;">
-        O Sistema gerou as suas diretrizes de sobrevivência de hoje. A falha em concluí-las antes da virada do dia acionará o <b>Protocolo de Punição Automática</b>.
+        O Sistema gerou as diretrizes de sobrevivência de hoje. Não há opção de escolha: cumpra ou enfrente a punição.
       </p>
       <div id="systemQuestsList"></div>
     </section>
 
-    <!-- VIEW: LOJA DE RECOMPENSAS DO SISTEMA -->
+    <!-- VIEW: LOJA -->
     <section class="view" id="view-rewards">
-      <div class="section-header"><h2>🎁 Loja de Trocas do Sistema</h2></div>
-      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Gasta o XP obtido nas missões para resgatar privilégios e descanso no mundo real.</p>
+      <div class="section-header"><h2>🎁 Loja do Sistema</h2></div>
+      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Utilize o XP ganho nas missões para resgatar pausas e descanso autorizado.</p>
       <div id="systemRewardsList"></div>
     </section>
 
-    <!-- VIEW: CONFIGURAÇÕES -->
+    <!-- VIEW: CONFIG -->
     <section class="view" id="view-settings">
-      <div class="section-header"><h2>⚙️ Configurações do Sistema</h2></div>
+      <div class="section-header"><h2>⚙️ Definições do Sistema</h2></div>
       <div class="card">
-        <p style="font-size: 13px; color: var(--muted); margin-top: 0;">Dados encriptados e armazenados localmente no seu dispositivo.</p>
-        <div style="display: grid; gap: 10px;">
-          <button class="btn" onclick="exportBackup()">↗ Exportar Dados do Sistema (JSON)</button>
-          <button class="btn danger" onclick="resetSystem()">⚠️ Reiniciar Sistema (Reset Total)</button>
-        </div>
+        <button class="btn danger" onclick="resetSystem()">⚠️ Reiniciar Dados do Sistema</button>
       </div>
     </section>
   </main>
 </div>
 
-<!-- Navegação HUD Inferior -->
 <nav class="bottom-nav">
   <button class="nav-btn active" onclick="switchView('quests')"><span class="icon">⚔️</span><span>Missões</span></button>
   <button class="nav-btn" onclick="switchView('rewards')"><span class="icon">🎁</span><span>Loja</span></button>
+  <button class="nav-btn" onclick="switchView('settings')"><span class="icon">⚙️</span><span>Sistema</span></button>
 </nav>
 
 <div id="toast" class="toast"></div>
 
 <script>
-const SYSTEM_KEY = 'nexus_solo_system_v6';
+const SYSTEM_KEY = 'nexus_solo_system_v7';
 const todayStr = () => new Date().toISOString().slice(0, 10);
 
-// Pool de Missões Automáticas que o Sistema pode gerar diariamente
 const questPool = [
-  { id: 'q1', title: 'Treinamento Físico Obrigatório', desc: 'Completar 30 flexões e 2 minutos de prancha para fortificar o corpo.', xp: 35 },
-  { id: 'q2', title: 'Imersão de Conhecimento', desc: 'Estudar ou ler conteúdo técnico/educativo por 20 minutos sem interrupções.', xp: 30 },
-  { id: 'q3', title: 'Protocolo de Hidratação & Limpeza', desc: 'Beber 2 litros de água e organizar a sua área de trabalho.', xp: 20 },
-  { id: 'q4', title: 'Sessão de Foco Absoluto', desc: 'Concluir 25 minutos de trabalho profundo focado em sua prioridade máxima.', xp: 40 }
+  { id: 'q1', title: 'Treinamento Físico de Sobrevivência', desc: 'Completar 35 flexões e 2 minutos de prancha.', xp: 40 },
+  { id: 'q2', title: 'Imersão de Conhecimento Crítico', desc: 'Estudar ou ler material produtivo por 25 minutos seguidos.', xp: 35 },
+  { id: 'q3', title: 'Protocolo de Hidratação & Limpeza', desc: 'Beber 2 litros de água e organizar o seu espaço de trabalho.', xp: 25 },
+  { id: 'q4', title: 'Sessão de Foco Absoluto', desc: 'Executar 30 minutos de trabalho profundo sem abrir redes sociais.', xp: 45 }
 ];
 
 let state = JSON.parse(localStorage.getItem(SYSTEM_KEY)) || {
@@ -258,8 +226,8 @@ let state = JSON.parse(localStorage.getItem(SYSTEM_KEY)) || {
   penaltiesCount: 0,
   activePenalty: false,
   rewards: [
-    { id: 'r1', title: '1 Episódio de Série / Anime sem culpa', cost: 60 },
-    { id: 'r2', title: '30 minutos de Lazer / Videogame', cost: 100 }
+    { id: 'r1', title: '1 Episódio de Série / Anime sem culpa', cost: 70 },
+    { id: 'r2', title: '30 minutos de Lazer Livre / Jogos', cost: 120 }
   ]
 };
 
@@ -283,25 +251,18 @@ function switchView(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// O Sistema verifica e gera as missões diárias automaticamente
 function checkDailySystemQuests() {
   const currentDay = todayStr();
-  
   if (state.lastGeneratedDate !== currentDay) {
-    // Se o dia mudou, o Sistema verifica se havia missões pendentes do dia anterior
     if (state.lastGeneratedDate && state.quests.length > 0) {
-      const pendingQuests = state.quests.filter(q => !q.done);
-      if (pendingQuests.length > 0) {
-        // PUNIÇÃO ACIONADA POR FALHA NO DIA ANTERIOR
+      const pending = state.quests.filter(q => !q.done);
+      if (pending.length > 0) {
         state.penaltiesCount += 1;
         state.activePenalty = true;
-        state.xp = Math.max(0, state.xp - 50); // Multa de 50 XP
+        state.xp = Math.max(0, state.xp - 60);
         showToast('⚠️ ALERTA DO SISTEMA: Missões diárias expiraram! Punição aplicada.');
       }
     }
-
-    // O Sistema gera novas missões automáticas para hoje
-    // Seleciona 3 missões aleatórias do pool
     const shuffled = [...questPool].sort(() => 0.5 - Math.random());
     state.quests = shuffled.slice(0, 3).map(q => ({ ...q, id: q.id + '_' + currentDay, done: false }));
     state.lastGeneratedDate = currentDay;
@@ -310,8 +271,8 @@ function checkDailySystemQuests() {
 }
 
 function computeSoloLevel() {
-  const level = Math.floor(state.xp / 100) + 1;
-  const currentXP = state.xp % 100;
+  const level = Math.floor(state.xp / 120) + 1;
+  const currentXP = state.xp % 120;
   const availableXP = state.xp - state.spentXp;
   const rank = level >= 15 ? 'MONARCA DAS SOMBRAS' : level >= 10 ? 'HUNTER DE CLASSE S' : level >= 6 ? 'HUNTER DE CLASSE A' : level >= 3 ? 'HUNTER DE CLASSE C' : 'PLAYER DE CLASSE E';
   return { level, currentXP, availableXP, rank };
@@ -322,28 +283,23 @@ function renderSystem() {
   document.getElementById('levelLabel').textContent = `Nível ${info.level}`;
   document.getElementById('rankPill').textContent = '◆ ' + info.rank;
   document.getElementById('statXP').textContent = info.availableXP;
-  document.getElementById('xpLabel').textContent = `${info.currentXP} / 100 XP para Subir de Nível`;
-  document.getElementById('xpBar').style.width = Math.min(100, info.currentXP) + '%';
+  document.getElementById('xpLabel').textContent = `${info.currentXP} / 120 XP`;
+  document.getElementById('xpBar').style.width = Math.min(100, (info.currentXP / 120) * 100) + '%';
   document.getElementById('penaltyCounter').textContent = `Punições: ${state.penaltiesCount}`;
 
-  // Banner de Punição Ativa
   const penaltyContainer = document.getElementById('penaltyBannerContainer');
   if (state.activePenalty) {
     penaltyContainer.innerHTML = `
       <div class="penalty-banner">
         <span style="font-size:24px">⚠️</span>
-        <div>
-          <b>PENALIDADE ATIVA DO SISTEMA</b><br>
-          Você falhou nas missões anteriores. Seus atributos estão temporariamente restringidos até cumprir o treino de hoje.
-        </div>
+        <div><b>PENALIDADE ATIVA DO SISTEMA</b><br>Você falhou em concluir as missões anteriores a tempo.</div>
       </div>
     `;
   } else {
     penaltyContainer.innerHTML = '';
   }
 
-  // Renderizar Missões Automáticas do Sistema
-  const questsHTML = state.quests.length ? state.quests.map(q => `
+  document.getElementById('systemQuestsList').innerHTML = state.quests.map(q => `
     <div class="quest-card ${q.done ? 'completed' : ''}">
       <div class="quest-checkbox" onclick="completeSystemQuest('${q.id}')">${q.done ? '✓' : ''}</div>
       <div class="quest-info">
@@ -352,11 +308,8 @@ function renderSystem() {
         <div style="margin-top:6px; font-size:11px; color:var(--primary); font-weight:700;">Recompensa: +${q.xp} XP</div>
       </div>
     </div>
-  `).join('') : '<div style="color:var(--muted); text-align:center; padding:20px;">O Sistema está a recalcular novas diretrizes...</div>';
+  `).join('');
 
-  document.getElementById('systemQuestsList').innerHTML = questsHTML;
-
-  // Renderizar Loja
   document.getElementById('systemRewardsList').innerHTML = state.rewards.map(r => `
     <div class="quest-card">
       <div class="quest-info">
@@ -375,10 +328,9 @@ function completeSystemQuest(id) {
   if (q.done) {
     state.xp += q.xp;
     showToast(`⚡ MISSÃO CONCLUÍDA: +${q.xp} XP obtidos.`);
-    // Se todas as missões do dia foram concluídas, remove a punição ativa
     if (state.quests.every(item => item.done)) {
       state.activePenalty = false;
-      showToast('🛡️ O Sistema removeu a penalidade. Excelente trabalho, Player.');
+      showToast('🛡️ O Sistema removeu a penalidade.');
     }
   } else {
     state.xp = Math.max(0, state.xp - q.xp);
@@ -390,29 +342,20 @@ function buySystemReward(cost) {
   const available = state.xp - state.spentXp;
   if (available >= cost) {
     state.spentXp += cost;
-    showToast('🎁 Recompensa autorizada pelo Sistema. Aproveite o seu descanso.');
+    showToast('🎁 Recompensa autorizada pelo Sistema.');
     saveState();
   } else {
-    showToast('❌ ERRO: XP insuficiente para processar o resgate.');
+    showToast('❌ XP insuficiente.');
   }
 }
 
-function exportBackup() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = `solo_system_backup_${todayStr()}.json`; a.click();
-  URL.revokeObjectURL(url);
-  showToast('💾 Dados do Sistema exportados.');
-}
-
 function resetSystem() {
-  if (confirm('⚠️ Tem a certeza absoluta? Todo o progresso de Classe será reiniciado.')) {
+  if (confirm('⚠️ Reiniciar todo o Sistema?')) {
     localStorage.removeItem(SYSTEM_KEY);
     location.reload();
   }
 }
 
-// Executar verificação automática ao iniciar
 checkDailySystemQuests();
 renderSystem();
 </script>
