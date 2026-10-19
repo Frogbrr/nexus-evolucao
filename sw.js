@@ -1,4 +1,4 @@
-const CACHE = "nexus-evolucao-v2";
+const CACHE = "nexus-solo-v6";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
