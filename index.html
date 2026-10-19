@@ -2,1270 +2,581 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#060913">
-<meta name="description" content="NEXUS — Sistema Pessoal de Evolução">
+<title>NEXUS — Sistema Profissional de Evolução</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<title>NEXUS — Sistema de Evolução</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{
+:root {
   --bg: #060913;
-  --bg-gradient: radial-gradient(circle at top right, #101c38 0%, #060913 55%);
-  --panel: rgba(16, 24, 43, 0.75);
-  --panel-solid: #10182b;
-  --panel-hover: #172442;
-  --line: #203053;
-  --line-light: #2d4475;
+  --surface: rgba(16, 24, 43, 0.85);
+  --surface-solid: #10182b;
+  --border: rgba(6, 182, 212, 0.2);
+  --border-focus: rgba(6, 182, 212, 0.6);
+  --primary: #06b6d4;
+  --primary-glow: rgba(6, 182, 212, 0.25);
+  --accent: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
   --text: #f0f4ff;
   --muted: #8b9bb8;
-  --blue: #3b82f6;
-  --cyan: #06b6d4;
-  --purple: #8b5cf6;
-  --green: #10b981;
-  --orange: #f59e0b;
-  --red: #ef4444;
-  --radius: 20px;
-  --radius-sm: 12px;
-  --shadow: 0 12px 40px -10px rgba(0,0,0,0.5);
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-  color: var(--text);
-  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-button, input, textarea, select{font:inherit;color:inherit}
-button{cursor:pointer;border:none;background:transparent}
-
-.app{max-width:1200px;margin:auto;padding:20px 16px 100px}
-
-/* Topbar */
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;padding:4px 0}
-.brand{display:flex;align-items:center;gap:14px}
-.logo{
-  width:46px;height:46px;
-  background: linear-gradient(135deg, #1e3a8a, #06b6d4);
-  border: 1px solid rgba(6,182,212,0.4);
-  border-radius: 14px;
-  display:grid;place-items:center;
-  color:#fff;font-weight:900;font-size:22px;
-  box-shadow: 0 0 25px rgba(6,182,212,0.25);
-}
-.brand h1{font-size:18px;letter-spacing:3px;margin:0;font-weight:800}
-.brand p{font-size:10px;color:var(--muted);letter-spacing:2px;margin:2px 0 0;text-transform:uppercase}
-.top-actions{display:flex;gap:10px}
-
-/* Buttons & Inputs */
-.btn{
-  border:1px solid var(--line);
-  background: var(--panel-solid);
-  color:var(--text);
-  border-radius: var(--radius-sm);
-  padding:10px 16px;
-  font-weight:600;
-  font-size:13px;
-  transition: var(--transition);
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-}
-.btn:hover{background:var(--panel-hover);border-color:var(--line-light);transform:translateY(-1px)}
-.btn.primary{
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  border-color: rgba(255,255,255,0.15);
-  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
-}
-.btn.primary:hover{box-shadow: 0 6px 25px rgba(37,99,235,0.5)}
-.btn.small{padding:6px 12px;font-size:12px;border-radius:8px}
-.icon-btn{
-  width:38px;height:38px;border-radius:10px;
-  border:1px solid var(--line);background:var(--panel-solid);
-  display:grid;place-items:center;color:var(--muted);transition:var(--transition);
-}
-.icon-btn:hover{color:var(--text);background:var(--panel-hover);border-color:var(--line-light)}
-
-/* Hero Section */
-.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:20px}
-.panel{
-  background: var(--panel);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px;
-  box-shadow: var(--shadow);
-  position:relative;
-  overflow:hidden;
-}
-.eyebrow{font-size:10px;letter-spacing:2.5px;color:var(--cyan);text-transform:uppercase;font-weight:800;margin-bottom:4px}
-.hero h2{font-size:clamp(22px,3.5vw,32px);line-height:1.2;margin:6px 0 10px;font-weight:800}
-.hero p{color:var(--muted);margin:0;font-size:13.5px}
-
-.level-box{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
-.level-info{font-weight:800;font-size:15px}
-.progress{height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;margin-top:8px;border:1px solid rgba(255,255,255,0.04)}
-.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px;transition:width 0.5s ease}
-
-.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:4px}
-.stat-card{background:rgba(6,9,19,0.5);border:1px solid var(--line);border-radius:14px;padding:12px;transition:var(--transition)}
-.stat-card:hover{border-color:var(--line-light)}
-.stat-card .num{font-size:22px;font-weight:800;line-height:1.2;color:var(--text)}
-.stat-card .label{font-size:11px;color:var(--muted);margin-top:2px}
-.stat-card .glyph{font-size:16px;color:var(--cyan);margin-bottom:6px;display:inline-block}
-
-/* Navigation */
-.nav{
-  display:flex;gap:6px;overflow-x:auto;padding:4px 0 16px;margin-bottom:10px;
-  scrollbar-width:none;
-}
-.nav::-webkit-scrollbar{display:none}
-.nav button{
-  white-space:nowrap;border:1px solid var(--line);background:var(--panel-solid);
-  color:var(--muted);padding:10px 16px;border-radius:var(--radius-sm);
-  font-weight:600;font-size:13px;transition:var(--transition);display:flex;align-items:center;gap:8px;
-}
-.nav button:hover{color:var(--text);border-color:var(--line-light)}
-.nav button.active{
-  background: linear-gradient(135deg, #172554, #1e1b4b);
-  border-color: var(--cyan);
-  color: var(--cyan);
-  box-shadow: 0 0 20px rgba(6,182,212,0.15);
+  --nav-height: 70px;
+  --radius: 18px;
 }
 
-.view{display:none;animation: fadeIn 0.3s ease}
-.view.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:18px}
-.section-head h2{margin:0;font-size:20px;font-weight:800}
-.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
-
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.stack{display:grid;gap:12px}
-.row{display:flex;align-items:center;gap:10px}
-.between{justify-content:space-between}
-
-/* Task & Items */
-.task-item{
-  display:flex;align-items:flex-start;gap:12px;padding:12px 14px;
-  background:rgba(6,9,19,0.4);border:1px solid var(--line);
-  border-radius:14px;margin-bottom:8px;transition:var(--transition);
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0; background: var(--bg);
+  background-image: radial-gradient(circle at 50% -10%, #172554 0%, var(--bg) 60%);
+  background-attachment: fixed; color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh;
+  padding-bottom: calc(var(--nav-height) + 30px);
 }
-.task-item:hover{border-color:var(--line-light)}
-.task-item input[type=checkbox]{
-  width:20px;height:20px;accent-color:var(--cyan);margin-top:2px;cursor:pointer;flex-shrink:0;
-}
-.task-title{font-weight:650;font-size:14px}
-.task-item.done .task-title{text-decoration:line-through;color:var(--muted)}
-.task-item small{display:block;color:var(--muted);margin-top:3px;font-size:11.5px}
 
-.pill{
-  display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;
-  color:#93c5fd;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);
-  padding:3px 9px;border-radius:99px;
-}
-.pill.green{color:#34d399;background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.3)}
-.pill.orange{color:#fbbf24;background:rgba(245,158,11,0.15);border-color:rgba(245,158,11,0.3)}
-.pill.purple{color:#c084fc;background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.3)}
+.app { max-width: 600px; margin: 0 auto; padding: 16px; }
 
-.empty{padding:30px 10px;text-align:center;color:var(--muted);font-size:13px}
-.empty b{display:block;color:var(--text);margin-bottom:4px;font-size:14px}
+/* Top Header */
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  display: grid; place-items: center; font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 20px; color: #fff; box-shadow: 0 0 20px var(--primary-glow);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.brand h1 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: 2px; margin: 0; font-weight: 700; }
+.brand p { font-size: 9px; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; margin: 2px 0 0; font-weight: 700; }
 
-/* Forms */
-.form{display:grid;gap:12px}
-.form label{display:grid;gap:6px;color:var(--muted);font-size:12.5px;font-weight:600}
-.form input,.form textarea,.form select{
-  width:100%;border:1px solid var(--line);border-radius:11px;
-  padding:11px 14px;background:rgba(6,9,19,0.6);color:var(--text);
-  font-size:13.5px;transition:var(--transition);
+.icon-btn {
+  background: var(--surface-solid); border: 1px solid var(--border); color: var(--muted);
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; cursor: pointer;
+  transition: 0.2s;
 }
-.form input:focus,.form textarea:focus,.form select:focus{
-  outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(6,182,212,0.15);
-}
-textarea{resize:vertical;min-height:90px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.icon-btn:hover { color: var(--text); border-color: var(--primary); }
 
-/* Habit & Card Grid */
-.habit-card{
-  padding:14px;border:1px solid var(--line);border-radius:14px;
-  background:rgba(6,9,19,0.4);transition:var(--transition);margin-bottom:8px;
+/* Dashboard Card */
+.card {
+  background: var(--surface); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4); margin-bottom: 14px; position: relative; overflow: hidden;
 }
-.habit-card:hover{border-color:var(--line-light)}
-.habit-check{
-  width:36px;height:36px;border-radius:10px;border:1px solid var(--line-light);
-  background:rgba(6,9,19,0.6);color:var(--cyan);font-size:16px;
-  display:grid;place-items:center;transition:var(--transition);cursor:pointer;
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
 }
-.habit-check:hover{background:var(--panel-hover)}
-.habit-check.checked{background:rgba(16,185,129,0.2);border-color:var(--green);color:var(--green)}
 
-/* Week view */
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:12px 0}
-.day{border:1px solid var(--line);border-radius:10px;padding:10px 2px;text-align:center;background:rgba(6,9,19,0.4)}
-.day b{display:block;font-size:11.5px;color:var(--muted)}
-.day span{display:block;font-size:11px;color:var(--text);margin-top:6px;font-weight:600}
-.day.today{border-color:var(--cyan);background:rgba(6,182,212,0.1)}
-
-/* Timer */
-.timer-box{text-align:center;padding:20px 10px}
-.timer-ring{
-  width:220px;height:220px;border-radius:50%;
-  border:4px solid var(--line);margin:0 auto 20px;
-  display:grid;place-items:center;background:radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%);
-  box-shadow: 0 0 30px rgba(6,182,212,0.1);
+.level-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
+.rank-tag {
+  background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3);
+  color: var(--primary); padding: 3px 10px; border-radius: 99px; font-size: 10px; font-weight: 700; letter-spacing: 1px;
 }
-.timer-face{font-size:52px;font-weight:800;letter-spacing:2px;font-variant-numeric:tabular-nums}
-.timer-controls{display:flex;justify-content:center;gap:10px;margin-top:16px}
-.quick-times{display:flex;justify-content:center;gap:6px;margin-bottom:14px}
+.level-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; margin-top: 2px; line-height: 1.1; }
 
-/* Notice & Toast */
-.notice{border:1px solid rgba(6,182,212,0.3);background:rgba(6,182,212,0.05);border-radius:14px;padding:14px;color:#cbf8ff;font-size:13px;line-height:1.5}
-.toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:#0f172a;color:#f8fafc;padding:12px 20px;border-radius:14px;
-  font-weight:700;box-shadow:0 15px 40px rgba(0,0,0,0.6);z-index:100;
-  border:1px solid rgba(255,255,255,0.15);opacity:0;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events:none;font-size:13.5px;
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.hidden{display:none!important}
-.small-note{font-size:11.5px;color:var(--muted)}
-.danger{color:var(--red)!important}
-.footer-note{text-align:center;color:var(--muted);font-size:11px;margin:30px 0 10px;letter-spacing:1px}
+.progress-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #06b6d4); border-radius: 99px; width: 0%; transition: width 0.4s ease; }
 
-@media(max-width:768px){
-  .app{padding:12px 10px 90px}
-  .hero{grid-template-columns:1fr}
-  .grid2,.grid3{grid-template-columns:1fr}
-  .panel{padding:16px}
-  .top-actions .btn span{display:none}
+/* Grid de Estatísticas */
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.stat-box { background: rgba(6, 9, 19, 0.6); border: 1px solid var(--border); border-radius: 14px; padding: 12px; text-align: center; }
+.stat-box .num { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); }
+.stat-box .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
+
+/* Navegação Inferior (Bottom Bar) */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-height);
+  background: rgba(6, 9, 19, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-around;
+  align-items: center; z-index: 1000; padding-bottom: env(safe-area-inset-bottom);
 }
+.nav-btn {
+  background: none; border: none; color: var(--muted); display: flex; flex-direction: column;
+  align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 6px 10px; cursor: pointer; transition: 0.2s;
+}
+.nav-btn .icon { font-size: 18px; }
+.nav-btn.active { color: var(--primary); text-shadow: 0 0 12px var(--primary-glow); }
+
+/* Vistas */
+.view { display: none; animation: fadeIn 0.25s ease; }
+.view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; margin: 0; }
+
+/* Listas e Tarefas */
+.task-item {
+  background: rgba(6, 9, 19, 0.5); border: 1px solid var(--border); border-radius: 14px;
+  padding: 12px 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; transition: 0.2s;
+}
+.task-item:hover { border-color: var(--border-focus); }
+.checkbox {
+  width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--primary);
+  background: transparent; display: grid; place-items: center; cursor: pointer; flex-shrink: 0; transition: 0.2s; color: transparent;
+}
+.task-item.done .checkbox { background: var(--primary); color: #000; font-weight: 800; font-size: 12px; box-shadow: 0 0 10px var(--primary-glow); }
+.task-item.done .task-title { text-decoration: line-through; color: var(--muted); }
+.task-info { flex: 1; min-width: 0; }
+.task-title { font-weight: 600; font-size: 13.5px; }
+.task-meta { font-size: 11px; color: var(--muted); margin-top: 2px; display: flex; gap: 8px; }
+
+/* Botões e Formulários */
+.btn {
+  background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; border: none;
+  border-radius: 12px; padding: 11px 16px; font-weight: 700; font-size: 13px;
+  cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 15px var(--primary-glow); transition: 0.2s;
+}
+.btn:active { transform: scale(0.98); }
+.btn.danger { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 4px 15px rgba(220,38,38,0.3); }
+
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 10.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
+.input {
+  width: 100%; background: rgba(6, 9, 19, 0.7); border: 1px solid var(--border);
+  border-radius: 11px; padding: 10px 12px; color: var(--text); font-size: 13.5px; outline: none; transition: 0.2s;
+}
+.input:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
+
+/* Pomodoro Timer */
+.timer-display { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; text-align: center; margin: 15px 0; text-shadow: 0 0 20px var(--primary-glow); }
+.timer-controls { display: flex; gap: 8px; margin-top: 14px; }
+
+/* Toast Notification */
+.toast {
+  position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: #10182b; color: #fff; padding: 10px 18px; border-radius: 12px; font-weight: 700;
+  font-size: 13px; border: 1px solid rgba(6, 182, 212, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  opacity: 0; pointer-events: none; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2000;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
+
 <div class="app">
-<header class="topbar">
-  <div class="brand">
-    <div class="logo">N</div>
-    <div><h1>NEXUS</h1><p>Sistema Pessoal de Evolução</p></div>
-  </div>
-  <div class="top-actions">
-    <button class="btn small" id="exportTop" title="Exportar backup">↗ <span>Backup</span></button>
-    <button class="icon-btn" id="goSettings" title="Configurações">⚙</button>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="panel">
-    <div class="eyebrow">Sua jornada diária</div>
-    <h2 id="greeting">Construa consistência, um passo por vez.</h2>
-    <p id="dailyQuote">Você não precisa resolver a vida inteira hoje. Só precisa escolher o próximo passo possível.</p>
-    <div class="level-box">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">N</div>
       <div>
-        <div class="level-info" id="levelLabel">Nível 1 · Iniciante</div>
-        <div class="muted" style="font-size:11.5px;margin-top:2px" id="xpLabel">0 / 100 XP para o próximo nível</div>
+        <h1>NEXUS</h1>
+        <p>Pro Engine v3.0</p>
       </div>
-      <span class="pill" id="rankPill">◆ Recruta</span>
     </div>
-    <div class="progress"><span id="xpBar" style="width:0%"></span></div>
-  </div>
-  <div class="panel">
-    <div class="eyebrow" style="margin-bottom:10px">Painel de hoje</div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="glyph">✦</div><div class="num" id="statXP">0</div><div class="label">XP Total</div></div>
-      <div class="stat-card"><div class="glyph">✓</div><div class="num" id="statDone">0/0</div><div class="label">Missões hoje</div></div>
-      <div class="stat-card"><div class="glyph">◷</div><div class="num" id="statFocus">0m</div><div class="label">Foco hoje</div></div>
-      <div class="stat-card"><div class="glyph">🔥</div><div class="num" id="statStreak">0</div><div class="label">Dias seguidos</div></div>
-    </div>
-  </div>
-</section>
+    <button class="icon-btn" onclick="switchView('settings')" title="Configurações">⚙</button>
+  </header>
 
-<nav class="nav" id="nav">
-  <button class="active" data-view="home">⌂ Início</button>
-  <button data-view="missions">⚔ Missões</button>
-  <button data-view="habits">◆ Hábitos</button>
-  <button data-view="focus">◷ Foco</button>
-  <button data-view="study">文 Estudos</button>
-  <button data-view="journal">▤ Diário</button>
-  <button data-view="rewards">🎁 Recompensas</button>
-  <button data-view="stats">◈ Atributos</button>
-  <button data-view="settings">⚙ Ajustes</button>
-</nav>
-
-<main>
-  <!-- HOME -->
-  <section class="view active" id="view-home">
-    <div class="section-head">
-      <div><h2>Visão Geral</h2><p>Clareza e foco para o dia de hoje.</p></div>
-      <button class="btn primary" id="quickMission">＋ Nova missão</button>
+  <!-- Hero Status -->
+  <section class="card">
+    <div class="level-row">
+      <div>
+        <span class="rank-tag" id="rankPill">◆ RECRUTA</span>
+        <div class="level-title" id="levelLabel">Nível 1</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 9px; color: var(--muted); font-weight: 700; text-transform: uppercase;">XP Disponível</div>
+        <div style="font-size: 20px; font-weight: 700; color: var(--primary); font-family: 'Space Grotesk';" id="statAvailableXP">0</div>
+      </div>
     </div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="row between">
-          <div><div class="eyebrow">Prioridades</div><h3 style="margin:4px 0 0;font-size:16px">Missões de hoje</h3></div>
-          <button class="btn small" data-jump="missions">Ver todas</button>
-        </div>
-        <div id="homeMissions" style="margin-top:12px"></div>
-      </div>
-      <div class="panel">
-        <div class="row between">
-          <div><div class="eyebrow">Consistência</div><h3 style="margin:4px 0 0;font-size:16px">Hábitos diários</h3></div>
-          <button class="btn small" data-jump="habits">Gerenciar</button>
-        </div>
-        <div id="homeHabits" style="margin-top:12px"></div>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Ritmo semanal</div>
-        <h3 style="margin:4px 0 10px;font-size:16px">Constância sem perfeccionismo</h3>
-        <div id="weekView" class="week"></div>
-        <p class="small-note">Cada dia ativo acende sua chama na semana.</p>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Modo Resgate</div>
-        <h3 style="margin:4px 0 6px;font-size:16px">Sem energia? Comece com 2 minutos</h3>
-        <p class="muted" style="margin:0 0 12px;font-size:12.5px">Escolha uma micro-tarefa para destravar o dia:</p>
-        <div class="stack">
-          <button class="btn small" data-rescue="Beber um copo d'água e respirar fundo">💧 Beber água e respirar (5 XP)</button>
-          <button class="btn small" data-rescue="Alongar o corpo por 3 minutos">🧘 Alongar por 3 minutos (5 XP)</button>
-          <button class="btn small" data-rescue="Organizar apenas uma pequena mesa/área">🧹 Organizar uma pequena área (5 XP)</button>
-        </div>
-      </div>
+    <div class="progress-track" style="margin-top: 10px;">
+      <div class="progress-fill" id="xpBar"></div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin-top: 5px; font-weight: 600;">
+      <span id="xpLabel">0 / 100 XP</span>
+      <span>Evolução contínua</span>
     </div>
   </section>
 
-  <!-- MISSIONS -->
-  <section class="view" id="view-missions">
-    <div class="section-head">
-      <div><h2>Central de Missões</h2><p>Transforme objetivos em tarefas concretas e ganhe XP.</p></div>
-      <button class="btn primary" id="addMissionBtn">＋ Criar missão</button>
+  <!-- Métricas Rápidas -->
+  <div class="stats-grid">
+    <div class="stat-box">
+      <div class="num" id="statDoneCount">0/0</div>
+      <div class="lbl">Missões Hoje</div>
     </div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="row between">
-          <h3 style="margin:0;font-size:16px">Missões Ativas</h3>
-          <span class="pill" id="activeMissionCount">0 ativas</span>
-        </div>
-        <div id="missionList" style="margin-top:12px"></div>
+    <div class="stat-box">
+      <div class="num" id="statFocusTime">0m</div>
+      <div class="lbl">Foco Hoje</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="statStreak">0 dias</div>
+      <div class="lbl">Consistência</div>
+    </div>
+  </div>
+
+  <main>
+    <!-- VIEW: INÍCIO -->
+    <section class="view active" id="view-home">
+      <div class="section-header">
+        <h2>Painel Principal</h2>
+        <button class="btn" style="width: auto; padding: 6px 12px; font-size: 11.5px;" onclick="switchView('missions')">＋ Nova Missão</button>
       </div>
-      <div class="panel">
-        <div class="eyebrow">Nova Missão</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">Defina seu próximo passo</h3>
-        <form id="missionForm" class="form">
-          <label>O que precisa ser feito?
-            <input id="missionTitle" required maxlength="100" placeholder="Ex.: Revisar orçamento mensal">
-          </label>
-          <div class="form-row">
-            <label>Categoria
-              <select id="missionCategory">
-                <option>Autocuidado</option>
-                <option>Exercício</option>
-                <option>Estudos</option>
-                <option>Trabalho</option>
-                <option>Organização</option>
-                <option>Finanças</option>
-                <option>Idiomas</option>
-                <option>Outra</option>
-              </select>
-            </label>
-            <label>Dificuldade / XP
-              <select id="missionDifficulty">
-                <option value="10">Fácil · 10 XP</option>
-                <option value="20" selected>Média · 20 XP</option>
-                <option value="35">Desafio · 35 XP</option>
-                <option value="50">Épico · 50 XP</option>
-              </select>
-            </label>
+      <div id="homeMissions"></div>
+      
+      <div class="section-header" style="margin-top: 20px;">
+        <h2>Hábitos Diários</h2>
+        <button class="btn" style="width: auto; padding: 6px 12px; font-size: 11.5px;" onclick="switchView('habits')">Gerenciar</button>
+      </div>
+      <div id="homeHabits"></div>
+    </section>
+
+    <!-- VIEW: MISSÕES -->
+    <section class="view" id="view-missions">
+      <div class="section-header"><h2>Central de Missões</h2></div>
+      <div class="card" style="margin-bottom: 16px;">
+        <form id="missionForm">
+          <div class="form-group">
+            <label>O que precisa ser feito?</label>
+            <input class="input" id="missionTitle" placeholder="Ex: Terminar relatório ou treinar" required>
           </div>
-          <label>Prazo opcional
-            <input id="missionDue" type="date">
-          </label>
-          <button class="btn primary" type="submit">Adicionar Missão</button>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="form-group">
+              <label>Categoria</label>
+              <select class="input" id="missionCategory">
+                <option>Trabalho</option><option>Estudos</option><option>Exercício</option><option>Autocuidado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Recompensa XP</label>
+              <select class="input" id="missionXP">
+                <option value="10">Fácil (10 XP)</option>
+                <option value="20" selected>Médio (20 XP)</option>
+                <option value="40">Difícil (40 XP)</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn" type="submit">⚡ Adicionar Missão</button>
         </form>
       </div>
-    </div>
-  </section>
+      <div id="missionList"></div>
+    </section>
 
-  <!-- HABITS -->
-  <section class="view" id="view-habits">
-    <div class="section-head">
-      <div><h2>Hábitos Diários</h2><p>Pequenas ações repetidas criam grandes transformações.</p></div>
-      <button class="btn primary" id="addHabitBtn">＋ Novo hábito</button>
-    </div>
-    <div class="notice" style="margin-bottom:16px">💡 Dica de ouro: Mantenha sua lista curta (3 a 5 hábitos). A consistência vence a intensidade.</div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="row between">
-          <h3 style="margin:0;font-size:16px">Checklist de Hoje</h3>
-          <span class="pill green" id="habitProgressLabel">0 concluídos</span>
-        </div>
-        <div id="habitList" style="margin-top:12px"></div>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Criar Hábito</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">O que quer tornar constante?</h3>
-        <form id="habitForm" class="form">
-          <label>Nome do hábito
-            <input id="habitTitle" required maxlength="70" placeholder="Ex.: Ler 10 páginas de um livro">
-          </label>
-          <div class="form-row">
-            <label>Área
-              <select id="habitCategory">
-                <option>Bem-estar</option>
-                <option>Exercício</option>
-                <option>Estudos</option>
-                <option>Idiomas</option>
-                <option>Organização</option>
-                <option>Produtividade</option>
-              </select>
-            </label>
-            <label>Recompensa XP
-              <select id="habitXP">
-                <option value="5">5 XP</option>
-                <option value="10" selected>10 XP</option>
-                <option value="15">15 XP</option>
-              </select>
-            </label>
+    <!-- VIEW: HÁBITOS -->
+    <section class="view" id="view-habits">
+      <div class="section-header"><h2>Hábitos Diários</h2></div>
+      <div class="card" style="margin-bottom: 16px;">
+        <form id="habitForm">
+          <div class="form-group">
+            <label>Novo Hábito</label>
+            <input class="input" id="habitTitle" placeholder="Ex: Ler 10 páginas / Beber água" required>
           </div>
-          <button class="btn primary" type="submit">Salvar Hábito</button>
+          <button class="btn" type="submit">＋ Criar Hábito</button>
         </form>
       </div>
-    </div>
-  </section>
+      <div id="habitList"></div>
+    </section>
 
-  <!-- FOCUS -->
-  <section class="view" id="view-focus">
-    <div class="section-head">
-      <div><h2>Modo Foco (Pomodoro)</h2><p>Uma coisa de cada vez. Sem distrações.</p></div>
-    </div>
-    <div class="grid2">
-      <div class="panel timer-box">
-        <div class="eyebrow">Cronômetro ativo</div>
-        <div class="timer-ring">
-          <div>
-            <div class="timer-face" id="timerFace">25:00</div>
-            <div class="muted" id="timerStatus" style="font-size:12px;margin-top:4px">Pronto para começar</div>
-          </div>
-        </div>
-        <div class="quick-times">
-          <button class="btn small" data-minutes="5">5 min</button>
-          <button class="btn small" data-minutes="15">15 min</button>
-          <button class="btn small" data-minutes="25">25 min</button>
-          <button class="btn small" data-minutes="45">45 min</button>
-          <button class="btn small" data-minutes="60">60 min</button>
-        </div>
+    <!-- VIEW: FOCO -->
+    <section class="view" id="view-focus">
+      <div class="section-header"><h2>Modo Foco (Pomodoro)</h2></div>
+      <div class="card" style="text-align: center;">
+        <div class="timer-display" id="timerFace">25:00</div>
+        <div style="color: var(--muted); font-size: 12px;" id="timerStatus">Pronto para iniciar foco absoluto</div>
         <div class="timer-controls">
-          <button class="btn primary" id="timerStart" style="min-width:120px">▶ Iniciar</button>
-          <button class="btn" id="timerReset">↺ Reiniciar</button>
+          <button class="btn" id="timerStartBtn" onclick="toggleTimer()">▶ Iniciar Foco</button>
+          <button class="btn" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border);" onclick="resetTimer()">↺ Reset</button>
         </div>
       </div>
-      <div class="panel">
-        <div class="eyebrow">Sessão e Intenção</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">Qual o seu foco agora?</h3>
-        <form class="form" id="focusForm">
-          <label>Tarefa ou objetivo da sessão
-            <input id="focusTask" maxlength="100" placeholder="Ex.: Escrever relatório ou estudar inglês">
-          </label>
-          <label>Notas ou lembretes (opcional)
-            <textarea id="focusNote" rows="3" placeholder="O que você precisa manter em mente..."></textarea>
-          </label>
-          <button class="btn" type="submit">Salvar Intenção</button>
-        </form>
-        <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
-        <div class="row between">
-          <div><div class="muted" style="font-size:11.5px">Tempo focado hoje</div><h2 id="focusTotalLarge" style="margin:2px 0;font-size:22px">0 minutos</h2></div>
-          <span class="pill cyan">+ XP automático ao concluir</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- STUDY -->
-  <section class="view" id="view-study">
-    <div class="section-head">
-      <div><h2>Laboratório de Estudos</h2><p>Trilhas de idiomas e competências para o seu futuro.</p></div>
-      <button class="btn primary" id="addStudyBtn">＋ Adicionar trilha</button>
-    </div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="row between">
-          <h3 style="margin:0;font-size:16px">Trilhas Ativas</h3>
-          <span class="pill" id="studyCount">0 trilhas</span>
-        </div>
-        <div id="studyList" style="margin-top:12px"></div>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Nova Trilha</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">O que você quer aprender?</h3>
-        <form class="form" id="studyForm">
-          <label>Idioma ou Habilidade
-            <input id="studyTitle" required maxlength="70" placeholder="Ex.: Inglês, Programação, Finanças">
-          </label>
-          <div class="form-row">
-            <label>Nível Atual
-              <select id="studyLevel">
-                <option>Iniciante</option>
-                <option>Básico</option>
-                <option>Intermediário</option>
-                <option>Avançado</option>
-              </select>
-            </label>
-            <label>Meta Semanal (min)
-              <input id="studyGoal" type="number" min="10" max="2000" value="120" required>
-            </label>
-          </div>
-          <label>Próximo Marco / Objetivo
-            <input id="studyNext" maxlength="100" placeholder="Ex.: Terminar módulo 3 de gramática">
-          </label>
-          <button class="btn primary" type="submit">Criar Trilha</button>
+    <!-- VIEW: RECOMPENSAS -->
+    <section class="view" id="view-rewards">
+      <div class="section-header"><h2>Loja de Recompensas</h2></div>
+      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Gasta o teu XP ganho com esforço real para resgatar momentos de lazer sem culpa.</p>
+      <div class="card" style="margin-bottom: 16px;">
+        <form id="rewardForm">
+          <div class="form-group"><label>Recompensa</label><input class="input" id="rewardTitle" placeholder="Ex: 1 Episódio de Série" required></div>
+          <div class="form-group"><label>Custo em XP</label><input class="input" type="number" id="rewardCost" value="50" required></div>
+          <button class="btn" type="submit">🎁 Adicionar à Loja</button>
         </form>
       </div>
-    </div>
-  </section>
+      <div id="rewardList"></div>
+    </section>
 
-  <!-- JOURNAL -->
-  <section class="view" id="view-journal">
-    <div class="section-head">
-      <div><h2>Diário Pessoal & Reflexão</h2><p>Um espaço privado e seguro neste dispositivo para organizar sua mente.</p></div>
-    </div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="eyebrow">Check-in Emocional</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">Como está sendo o seu dia?</h3>
-        <form id="journalForm" class="form">
-          <label>Humor de hoje
-            <select id="mood">
-              <option value="1">1 · Muito difícil / Exausto</option>
-              <option value="2">2 · Desafiador / Cansado</option>
-              <option value="3" selected>3 · Neutro / Estável</option>
-              <option value="4">4 · Bem / Produtivo</option>
-              <option value="5">5 · Excelente / Inspirado</option>
-            </select>
-          </label>
-          <label>O que está passando pela sua cabeça?
-            <textarea id="journalText" required maxlength="4000" placeholder="Escreva livremente, sem julgamentos..."></textarea>
-          </label>
-          <label>Uma pequena vitória de hoje
-            <input id="journalWin" maxlength="250" placeholder="Ex.: Consegui manter a calma em um momento difícil">
-          </label>
-          <button class="btn primary" type="submit">Salvar Registro (+5 XP)</button>
-        </form>
-      </div>
-      <div class="panel">
-        <div class="row between">
-          <h3 style="margin:0;font-size:16px">Histórico do Diário</h3>
-          <span class="pill" id="journalCount">0 registros</span>
+    <!-- VIEW: AJUSTES -->
+    <section class="view" id="view-settings">
+      <div class="section-header"><h2>Configurações & Dados</h2></div>
+      <div class="card">
+        <p style="font-size: 13px; color: var(--muted); margin-top: 0;">Os teus dados estão protegidos e salvos localmente neste aparelho.</p>
+        <div style="display: grid; gap: 10px;">
+          <button class="btn" onclick="exportBackup()">↗ Exportar Backup JSON</button>
+          <button class="btn danger" onclick="resetAllData()">🗑 Apagar Todos os Dados</button>
         </div>
-        <div id="journalEntries" style="margin-top:12px;max-height:480px;overflow-y:auto"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- REWARDS -->
-  <section class="view" id="view-rewards">
-    <div class="section-head">
-      <div><h2>Loja de Recompensas</h2><p>Gaste seu XP acumulado com prêmios reais que você define para si mesmo.</p></div>
-      <button class="btn primary" id="addRewardBtn">＋ Nova recompensa</button>
-    </div>
-    <div class="notice" style="margin-bottom:16px">🎁 A lógica aqui é simples: discipline-se cumprindo missões e use seu XP ganho para desfrutar de pausas e lazer sem culpa.</div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="row between">
-          <h3 style="margin:0;font-size:16px">Disponíveis para Resgate</h3>
-          <span class="pill purple" id="userXpBalance">0 XP disponível</span>
-        </div>
-        <div id="rewardList" style="margin-top:12px"></div>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Criar Recompensa</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">Qual o seu prêmio?</h3>
-        <form id="rewardForm" class="form">
-          <label>Nome da recompensa
-            <input id="rewardTitle" required maxlength="70" placeholder="Ex.: 1 episódio de série ou doce favorito">
-          </label>
-          <label>Custo em XP
-            <input id="rewardCost" type="number" min="10" max="5000" value="50" required>
-          </label>
-          <button class="btn primary" type="submit">Adicionar Recompensa</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="view" id="view-stats">
-    <div class="section-head">
-      <div><h2>Atributos & Conquistas</h2><p>Sua evolução traduzida em dados e marcos alcançados.</p></div>
-    </div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="eyebrow">Distribuição por Categoria</div>
-        <h3 style="margin:4px 0 16px;font-size:16px">Atributos de Evolução</h3>
-        <div id="attributeBars"></div>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Marcos Históricos</div>
-        <h3 style="margin:4px 0 16px;font-size:16px">Conquistas Desbloqueadas</h3>
-        <div id="achievements" class="stack"></div>
-      </div>
-      <div class="panel" style="grid-column:1 / -1">
-        <div class="eyebrow">Seu Perfil</div>
-        <h3 style="margin:4px 0 14px;font-size:16px">Personalize sua identidade</h3>
-        <form id="profileForm" class="form">
-          <div class="form-row">
-            <label>Como quer ser chamado?
-              <input id="profileName" maxlength="40" placeholder="Seu nome ou apelido">
-            </label>
-            <label>Frase motivacional diária
-              <input id="settingMessage" maxlength="160" placeholder="Pequenos passos. Evolução real.">
-            </label>
-          </div>
-          <label>Seu objetivo principal de vida
-            <textarea id="profileGoal" rows="2" maxlength="300" placeholder="Ex.: Recuperar minha rotina, passar na prova X e manter minha saúde mental"></textarea>
-          </label>
-          <button class="btn primary" type="submit">Salvar Perfil</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- SETTINGS -->
-  <section class="view" id="view-settings">
-    <div class="section-head">
-      <div><h2>Configurações & Dados</h2><p>Seus dados são 100% privados e salvos apenas no seu dispositivo.</p></div>
-    </div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="eyebrow">Backup e Privacidade</div>
-        <h3 style="margin:4px 0 10px;font-size:16px">Armazenamento Local</h3>
-        <p class="muted" style="font-size:13px;margin-bottom:16px">O NEXUS não usa servidores externos. Todo o seu progresso fica guardado no navegador. Faça backups regulares para evitar perdas ao limpar os dados do Safari/Chrome.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn primary" id="exportBtn">Exportar Backup JSON</button>
-          <label class="btn" for="importFile" style="cursor:pointer">Importar Backup
-            <input id="importFile" type="file" accept="application/json,.json" class="hidden">
-          </label>
-        </div>
-        <p id="backupStatus" class="small-note" style="margin-top:10px"></p>
-      </div>
-      <div class="panel">
-        <div class="eyebrow">Instalação PWA</div>
-        <h3 style="margin:4px 0 10px;font-size:16px">Como usar no iPhone</h3>
-        <p class="muted" style="font-size:13px;margin-bottom:12px">Abra este site no **Safari**, toque no botão **Compartilhar** e selecione **Adicionar à Tela de Início**.</p>
-        <div class="notice">Projeto pessoal independente inspirado em gamificação e produtividade.</div>
-      </div>
-      <div class="panel" style="grid-column:1 / -1">
-        <div class="eyebrow danger">Zona de Risco</div>
-        <h3 style="margin:4px 0 10px;font-size:16px" class="danger">Reiniciar todo o progresso</h3>
-        <p class="muted" style="font-size:13px;margin-bottom:14px">Isso apagará permanentemente todas as missões, hábitos, XP e diário deste navegador.</p>
-        <button class="btn danger" id="resetAll">Apagar todos os dados</button>
-      </div>
-    </div>
-  </section>
-</main>
-
-<p class="footer-note">NEXUS · Sua jornada, seu ritmo · 100% Privado no seu dispositivo</p>
+    </section>
+  </main>
 </div>
 
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<!-- Bottom Navigation Bar -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="switchView('home')"><span class="icon">⌂</span><span>Início</span></button>
+  <button class="nav-btn" onclick="switchView('missions')"><span class="icon">⚔️</span><span>Missões</span></button>
+  <button class="nav-btn" onclick="switchView('habits')"><span class="icon">◆</span><span>Hábitos</span></button>
+  <button class="nav-btn" onclick="switchView('focus')"><span class="icon">◷</span><span>Foco</span></button>
+  <button class="nav-btn" onclick="switchView('rewards')"><span class="icon">🎁</span><span>Prémios</span></button>
+</nav>
+
+<div id="toast" class="toast"></div>
 
 <script>
-(() => {
-const KEY = 'nexus-evolucao-v2';
-const today = () => new Date().toISOString().slice(0,10);
-const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+const STORAGE_KEY = 'nexus_pro_engine_v3';
+const todayStr = () => new Date().toISOString().slice(0, 10);
 
-const defaults = () => ({
-  profile: { name: '', goal: '', message: 'Pequenos passos. Evolução real.' },
-  xp: 0,
-  spentXp: 0,
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+  xpTotal: 0,
+  xpSpent: 0,
   missions: [
-    { id: uid(), title: 'Fazer uma pequena coisa por mim', category: 'Autocuidado', xp: 10, due: '', created: today(), done: false },
-    { id: uid(), title: 'Movimentar o corpo por 5 minutos', category: 'Exercício', xp: 10, due: '', created: today(), done: false },
-    { id: uid(), title: 'Estudar ou ler por 10 minutos', category: 'Estudos', xp: 10, due: '', created: today(), done: false }
+    { id: '1', title: 'Definir as 3 prioridades do dia', category: 'Trabalho', xp: 15, done: false },
+    { id: '2', title: 'Movimentar o corpo por 15 minutos', category: 'Exercício', xp: 20, done: false }
   ],
   habits: [
-    { id: uid(), title: 'Beber água regularmente', category: 'Bem-estar', xp: 5, logs: [] },
-    { id: uid(), title: 'Caminhar ou movimentar', category: 'Exercício', xp: 10, logs: [] },
-    { id: uid(), title: 'Estudar 15 minutos', category: 'Estudos', xp: 15, logs: [] }
-  ],
-  studies: [
-    { id: uid(), title: 'Inglês', level: 'Iniciante', goal: 120, next: 'Praticar vocabulário por 10 min', minutes: 0 },
-    { id: uid(), title: 'Programação', level: 'Iniciante', goal: 120, next: 'Revisar lógica básica', minutes: 0 }
+    { id: 'h1', title: 'Beber 2L de Água', xp: 10, logs: [] },
+    { id: 'h2', title: 'Leitura focada (15 min)', xp: 15, logs: [] }
   ],
   rewards: [
-    { id: uid(), title: '1 episódio de série favorita', cost: 60 },
-    { id: uid(), title: 'Café especial / Lanche da tarde', cost: 100 },
-    { id: uid(), title: '30 minutos de videogame / lazer livre', cost: 150 }
+    { id: 'r1', title: '1 Episódio de Série / Anime', cost: 60 },
+    { id: 'r2', title: '30 min de Lazer Livre', cost: 100 }
   ],
-  journal: [],
   focusSessions: [],
-  activity: [],
-  streakDays: [],
-  preferences: {}
-});
+  streakDays: []
+};
 
-let state;
-try { state = JSON.parse(localStorage.getItem(KEY)) || defaults(); } catch { state = defaults(); }
-// Garantir chaves novas caso venha de backup antigo
-if(state.spentXp === undefined) state.spentXp = 0;
-if(!Array.isArray(state.rewards)) state.rewards = defaults().rewards;
-
-function save() {
-  localStorage.setItem(KEY, JSON.stringify(state));
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   renderAll();
 }
 
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toast.t);
-  toast.t = setTimeout(() => el.classList.remove('show'), 2800);
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
 }
 
-function logActivity(text, xp = 0) {
-  state.activity.unshift({ id: uid(), date: new Date().toISOString(), text, xp });
-  state.activity = state.activity.slice(0, 100);
-  if (!state.streakDays.includes(today())) state.streakDays.push(today());
-}
-
-function award(xp, reason) {
-  state.xp += xp;
-  logActivity(reason, xp);
-}
-
-function levelInfo() {
-  const level = Math.floor(state.xp / 100) + 1;
-  const progress = state.xp % 100;
-  const rank = level >= 20 ? 'Lenda' : level >= 10 ? 'Elite' : level >= 5 ? 'Veterano' : level >= 3 ? 'Explorador' : 'Recruta';
-  return { level, progress, rank };
-}
-
-function esc(s = '') {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-function dateLabel(d) {
-  try { return new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }); } catch { return d; }
-}
-
-function missionRow(m, compact = false) {
-  return `
-    <div class="task-item ${m.done ? 'done' : ''}">
-      <input type="checkbox" data-mission="${m.id}" ${m.done ? 'checked' : ''} aria-label="Concluir ${esc(m.title)}">
-      <div style="flex:1;min-width:0">
-        <div class="task-title">${esc(m.title)}</div>
-        <small>${esc(m.category)} · ${m.xp} XP${m.due ? ' · até ' + dateLabel(m.due) : ''}</small>
-      </div>
-      ${compact ? '' : `<button class="icon-btn small" data-delete-mission="${m.id}" title="Excluir">×</button>`}
-    </div>`;
-}
-
-function renderHome() {
-  const ms = state.missions.filter(m => !m.done).slice(0, 4);
-  document.getElementById('homeMissions').innerHTML = ms.length ? ms.map(m => missionRow(m, true)).join('') : '<div class="empty"><b>Tudo em dia!</b>Crie novas missões para avançar.</div>';
-  
-  const hs = state.habits.slice(0, 4), t = today();
-  document.getElementById('homeHabits').innerHTML = hs.length ? hs.map(h => `
-    <div class="task-item" style="align-items:center">
-      <button class="habit-check ${h.logs.includes(t) ? 'checked' : ''}" data-habit="${h.id}">${h.logs.includes(t) ? '✓' : '+'}</button>
-      <div style="flex:1">
-        <div class="task-title">${esc(h.title)}</div>
-        <small>${esc(h.category)} · ${h.xp} XP</small>
-      </div>
-    </div>
-  `).join('') : '<div class="empty">Adicione seus primeiros hábitos.</div>';
-
-  // Semana atual
-  const w = document.getElementById('weekView');
-  let html = '';
-  const now = new Date();
-  const day = now.getDay();
-  const monday = new Date(now);
-  monday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
-  const names = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(monday);
-    d.setDate(monday.getDate() + i);
-    const k = d.toISOString().slice(0, 10);
-    const active = state.streakDays.includes(k);
-    html += `<div class="day ${k === today() ? 'today' : ''}"><b>${names[i]}</b><span>${active ? '🔥' : d.getDate()}</span></div>`;
-  }
-  w.innerHTML = html;
-}
-
-function renderMissions() {
-  const active = state.missions.filter(m => !m.done);
-  document.getElementById('activeMissionCount').textContent = active.length + ' ativas';
-  document.getElementById('missionList').innerHTML = state.missions.length ? state.missions.map(m => missionRow(m)).join('') : '<div class="empty"><b>Nenhuma missão cadastrada</b>Crie uma tarefa para começar.</div>';
-}
-
-function renderHabits() {
-  const t = today(), done = state.habits.filter(h => h.logs.includes(t)).length;
-  document.getElementById('habitProgressLabel').textContent = `${done}/${state.habits.length} concluídos`;
-  document.getElementById('habitList').innerHTML = state.habits.length ? state.habits.map(h => `
-    <div class="habit-card">
-      <div class="row between">
-        <div>
-          <div style="font-weight:700;font-size:14.5px">${esc(h.title)}</div>
-          <small style="color:var(--muted)">${esc(h.category)} · ${h.xp} XP · ${h.logs.length} conclusões</small>
-        </div>
-        <button class="habit-check ${h.logs.includes(t) ? 'checked' : ''}" data-habit="${h.id}">${h.logs.includes(t) ? '✓' : '+'}</button>
-      </div>
-      <div class="card-footer" style="display:flex;justify-content:flex-end;margin-top:10px">
-        <button class="btn small danger" style="padding:4px 8px" data-delete-habit="${h.id}">Excluir</button>
-      </div>
-    </div>
-  `).join('') : '<div class="empty"><b>Sem hábitos cadastrados</b></div>';
-}
-
-function renderStudy() {
-  document.getElementById('studyCount').textContent = state.studies.length + ' trilhas';
-  document.getElementById('studyList').innerHTML = state.studies.length ? state.studies.map(s => `
-    <div class="habit-card">
-      <div class="row between">
-        <div>
-          <div style="font-weight:700;font-size:15px">${esc(s.title)}</div>
-          <small style="color:var(--muted)">${esc(s.level)} · Meta semanal: ${s.goal} min</small>
-        </div>
-        <span class="pill purple">${s.minutes} min focados</span>
-      </div>
-      <div class="progress" style="margin:10px 0"><span style="width:${Math.min(100, s.goal ? 100 * s.minutes / s.goal : 0)}%"></span></div>
-      <div class="small-note" style="margin-bottom:10px">Próximo objetivo: <b>${esc(s.next || 'Definir próximo passo')}</b></div>
-      <div class="row between">
-        <button class="btn small primary" data-study-session="${s.id}">+ 15 min de estudo</button>
-        <button class="btn small danger" data-delete-study="${s.id}">Excluir</button>
-      </div>
-    </div>
-  `).join('') : '<div class="empty">Nenhuma trilha cadastrada.</div>';
-}
-
-function renderJournal() {
-  document.getElementById('journalCount').textContent = state.journal.length + ' registros';
-  document.getElementById('journalEntries').innerHTML = state.journal.length ? state.journal.slice().reverse().map(j => `
-    <div style="padding:14px 0;border-bottom:1px solid var(--line)">
-      <div class="row between">
-        <span style="font-weight:700">${'★'.repeat(Number(j.mood) || 3)}${'☆'.repeat(5 - (Number(j.mood) || 3))}</span>
-        <small style="color:var(--muted)">${dateLabel(j.date)}</small>
-      </div>
-      <p style="margin:8px 0 0;white-space:pre-wrap;font-size:13.5px;color:#cbd5e1">${esc(j.text)}</p>
-      ${j.win ? `<div style="margin-top:6px;font-size:12px;color:var(--green)">🏆 Vitória: ${esc(j.win)}</div>` : ''}
-    </div>
-  `).join('') : '<div class="empty"><b>Nenhum registro no diário ainda.</b></div>';
-}
-
-function renderRewards() {
-  const currentXP = state.xp - state.spentXp;
-  document.getElementById('userXpBalance').textContent = currentXP + ' XP disponível';
-  document.getElementById('rewardList').innerHTML = state.rewards.length ? state.rewards.map(r => `
-    <div class="habit-card">
-      <div class="row between">
-        <div>
-          <div style="font-weight:700;font-size:14.5px">${esc(r.title)}</div>
-          <span class="pill orange" style="margin-top:4px">${r.cost} XP</span>
-        </div>
-        <button class="btn small primary" data-buy-reward="${r.id}" ${currentXP < r.cost ? 'style="opacity:0.5"' : ''}>Resgatar</button>
-      </div>
-    </div>
-  `).join('') : '<div class="empty">Nenhuma recompensa cadastrada.</div>';
-}
-
-function renderStats() {
-  const cats = { 'Autocuidado': 0, 'Bem-estar': 0, 'Exercício': 0, 'Estudos': 0, 'Idiomas': 0, 'Trabalho': 0, 'Organização': 0, 'Finanças': 0, 'Outra': 0 };
-  state.missions.filter(m => m.done).forEach(m => { cats[m.category] = (cats[m.category] || 0) + m.xp; });
-  state.habits.forEach(h => { cats[h.category] = (cats[h.category] || 0) + h.logs.length * h.xp; });
-  
-  const max = Math.max(1, ...Object.values(cats));
-  document.getElementById('attributeBars').innerHTML = Object.entries(cats).map(([k, v]) => `
-    <div style="margin-bottom:10px">
-      <div class="row between" style="font-size:12.5px;margin-bottom:4px">
-        <span>${esc(k)}</span>
-        <strong style="color:var(--cyan)">${v} XP</strong>
-      </div>
-      <div class="progress"><span style="width:${Math.min(100, 100 * v / max)}%"></span></div>
-    </div>
-  `).join('');
-
-  const doneCount = state.missions.filter(m => m.done).length;
-  const habitTotal = state.habits.reduce((acc, h) => acc + h.logs.length, 0);
-  const focusCount = state.focusSessions.length;
-  const li = levelInfo();
-
-  const achievements = [
-    ['Primeiro Passo', state.xp >= 10, 'Ganhe seus primeiros 10 XP'],
-    ['Consistência Inicial', state.streakDays.length >= 3, 'Registre atividade em 3 dias diferentes'],
-    ['Mão na Massa', doneCount >= 5, 'Conclua 5 missões'],
-    ['Focado', focusCount >= 3, 'Finalize 3 sessões de foco'],
-    ['Criando Raízes', habitTotal >= 10, 'Complete 10 hábitos'],
-    ['Veterano NEXUS', li.level >= 5, 'Alcance o Nível 5']
-  ];
-
-  document.getElementById('achievements').innerHTML = achievements.map(a => `
-    <div class="row" style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
-      <span style="font-size:20px;color:${a[1] ? 'var(--green)' : 'var(--line-light)'}">${a[1] ? '◆' : '◇'}</span>
-      <div style="flex:1">
-        <div style="font-weight:700;font-size:13.5px;color:${a[1] ? 'var(--text)' : 'var(--muted)'}">${a[0]}</div>
-        <div class="small-note">${a[2]}</div>
-      </div>
-    </div>
-  `).join('');
-
-  document.getElementById('profileName').value = state.profile.name || '';
-  document.getElementById('profileGoal').value = state.profile.goal || '';
-  document.getElementById('settingMessage').value = state.profile.message || '';
-}
-
-function renderAll() {
-  const li = levelInfo();
-  document.getElementById('levelLabel').textContent = `Nível ${li.level} · ${li.rank}`;
-  document.getElementById('xpLabel').textContent = `${li.progress} / 100 XP para o próximo nível`;
-  document.getElementById('xpBar').style.width = li.progress + '%';
-  document.getElementById('rankPill').textContent = '◆ ' + li.rank;
-  
-  document.getElementById('statXP').textContent = state.xp;
-  const done = state.missions.filter(m => m.done).length;
-  document.getElementById('statDone').textContent = `${done}/${state.missions.length}`;
-  
-  const todayMins = state.focusSessions.filter(s => s.date === today()).reduce((acc, s) => acc + s.minutes, 0);
-  document.getElementById('statFocus').textContent = todayMins >= 60 ? `${Math.floor(todayMins/60)}h ${todayMins%60}m` : `${todayMins}m`;
-  document.getElementById('focusTotalLarge').textContent = todayMins + ' minutos';
-
-  let streak = 0, d = new Date();
-  while (state.streakDays.includes(d.toISOString().slice(0, 10))) {
-    streak++;
-    d.setDate(d.getDate() - 1);
-  }
-  document.getElementById('statStreak').textContent = streak;
-
-  document.getElementById('greeting').textContent = state.profile.name ? `Vamos avançar, ${state.profile.name}.` : 'Construa consistência, um passo por vez.';
-  document.getElementById('dailyQuote').textContent = state.profile.message || 'Você não precisa resolver a vida inteira hoje. Só precisa escolher o próximo passo possível.';
-
-  renderHome();
-  renderMissions();
-  renderHabits();
-  renderStudy();
-  renderJournal();
-  renderRewards();
-  renderStats();
-}
-
-function switchView(name) {
-  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + name));
-  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.view === name));
+function switchView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  event?.currentTarget?.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.getElementById('nav').addEventListener('click', e => {
-  const b = e.target.closest('[data-view]');
-  if (b) switchView(b.dataset.view);
-});
+function computeLevel() {
+  const level = Math.floor(state.xpTotal / 100) + 1;
+  const currentXP = state.xpTotal % 100;
+  const availableXP = state.xpTotal - state.xpSpent;
+  const rank = level >= 15 ? 'Lenda' : level >= 8 ? 'Elite' : level >= 4 ? 'Veterano' : level >= 2 ? 'Explorador' : 'Recruta';
+  return { level, currentXP, availableXP, rank };
+}
 
-document.addEventListener('click', e => {
-  const jump = e.target.closest('[data-jump]');
-  if (jump) switchView(jump.dataset.jump);
+function renderAll() {
+  const info = computeLevel();
+  document.getElementById('levelLabel').textContent = `Nível ${info.level}`;
+  document.getElementById('rankPill').textContent = '◆ ' + info.rank;
+  document.getElementById('statAvailableXP').textContent = info.availableXP;
+  document.getElementById('xpLabel').textContent = `${info.currentXP} / 100 XP`;
+  document.getElementById('xpBar').style.width = info.currentXP + '%';
 
-  const m = e.target.closest('[data-mission]');
-  if (m) {
-    const item = state.missions.find(x => x.id === m.dataset.mission);
-    if (item) {
-      item.done = m.checked;
-      if (item.done) {
-        award(item.xp, `Missão concluída: ${item.title}`);
-        toast(`Missão concluída! +${item.xp} XP`);
-      } else {
-        toast('Missão reaberta.');
-      }
-      save();
-    }
+  const doneMissions = state.missions.filter(m => m.done).length;
+  document.getElementById('statDoneCount').textContent = `${doneMissions}/${state.missions.length}`;
+
+  const todayFocus = state.focusSessions.filter(s => s.date === todayStr()).reduce((acc, s) => acc + s.mins, 0);
+  document.getElementById('statFocusTime').textContent = todayFocus + 'm';
+
+  document.getElementById('statStreak').textContent = state.streakDays.length + ' dias';
+
+  const missionHTML = state.missions.length ? state.missions.map(m => `
+    <div class="task-item ${m.done ? 'done' : ''}">
+      <div class="checkbox" onclick="toggleMission('${m.id}')">${m.done ? '✓' : ''}</div>
+      <div class="task-info">
+        <div class="task-title">${m.title}</div>
+        <div class="task-meta"><span>${m.category}</span><span>•</span><span style="color:var(--primary)">+${m.xp} XP</span></div>
+      </div>
+      <button class="icon-btn" style="width:30px;height:30px;font-size:12px;" onclick="deleteMission('${m.id}')">✕</button>
+    </div>
+  `).join('') : '<div style="color:var(--muted);text-align:center;padding:15px;font-size:13px;">Sem missões cadastradas.</div>';
+
+  document.getElementById('homeMissions').innerHTML = missionHTML;
+  document.getElementById('missionList').innerHTML = missionHTML;
+
+  const t = todayStr();
+  const habitHTML = state.habits.length ? state.habits.map(h => {
+    const checked = h.logs.includes(t);
+    return `
+      <div class="task-item ${checked ? 'done' : ''}">
+        <div class="checkbox" onclick="toggleHabit('${h.id}')">${checked ? '✓' : ''}</div>
+        <div class="task-info">
+          <div class="task-title">${h.title}</div>
+          <div class="task-meta"><span style="color:var(--success)">+${h.xp} XP diário</span></div>
+        </div>
+        <button class="icon-btn" style="width:30px;height:30px;font-size:12px;" onclick="deleteHabit('${h.id}')">✕</button>
+      </div>
+    `;
+  }).join('') : '<div style="color:var(--muted);text-align:center;padding:15px;font-size:13px;">Sem hábitos ativos.</div>';
+
+  document.getElementById('homeHabits').innerHTML = habitHTML;
+  document.getElementById('habitList').innerHTML = habitHTML;
+
+  document.getElementById('rewardList').innerHTML = state.rewards.length ? state.rewards.map(r => `
+    <div class="task-item">
+      <div class="task-info">
+        <div class="task-title">${r.title}</div>
+        <div class="task-meta" style="color:var(--warning)">Custo: ${r.cost} XP disponível</div>
+      </div>
+      <button class="btn" style="width:auto;padding:6px 12px;font-size:12px;" onclick="buyReward('${r.id}', ${r.cost})">Resgatar</button>
+    </div>
+  `).join('') : '<div style="color:var(--muted);text-align:center;padding:15px;font-size:13px;">Nenhuma recompensa cadastrada.</div>';
+}
+
+function toggleMission(id) {
+  const m = state.missions.find(x => x.id === id);
+  if (!m) return;
+  m.done = !m.done;
+  if (m.done) {
+    state.xpTotal += m.xp;
+    showToast(`Missão concluída! +${m.xp} XP`);
+    if (!state.streakDays.includes(todayStr())) state.streakDays.push(todayStr());
+  } else {
+    state.xpTotal = Math.max(0, state.xpTotal - m.xp);
   }
+  saveState();
+}
 
-  const del = e.target.closest('[data-delete-mission]');
-  if (del && confirm('Excluir esta missão?')) {
-    state.missions = state.missions.filter(x => x.id !== del.dataset.deleteMission);
-    save();
+function deleteMission(id) {
+  state.missions = state.missions.filter(x => x.id !== id);
+  saveState();
+}
+
+function toggleHabit(id) {
+  const h = state.habits.find(x => x.id === id);
+  if (!h) return;
+  const t = todayStr();
+  if (h.logs.includes(t)) {
+    h.logs = h.logs.filter(d => d !== t);
+    state.xpTotal = Math.max(0, state.xpTotal - h.xp);
+    showToast('Hábito desmarcado.');
+  } else {
+    h.logs.push(t);
+    state.xpTotal += h.xp;
+    showToast(`Hábito cumprido! +${h.xp} XP`);
+    if (!state.streakDays.includes(t)) state.streakDays.push(t);
   }
+  saveState();
+}
 
-  const h = e.target.closest('[data-habit]');
-  if (h) {
-    const item = state.habits.find(x => x.id === h.dataset.habit);
-    const t = today();
-    if (item) {
-      if (item.logs.includes(t)) {
-        item.logs = item.logs.filter(d => d !== t);
-        toast('Hábito desmarcado.');
-      } else {
-        item.logs.push(t);
-        award(item.xp, `Hábito concluído: ${item.title}`);
-        toast(`Hábito concluído! +${item.xp} XP`);
-      }
-      save();
-    }
+function deleteHabit(id) {
+  state.habits = state.habits.filter(x => x.id !== id);
+  saveState();
+}
+
+function buyReward(id, cost) {
+  const available = state.xpTotal - state.xpSpent;
+  if (available >= cost) {
+    state.xpSpent += cost;
+    showToast('Recompensa resgatada com sucesso! Aproveite!');
+    saveState();
+  } else {
+    showToast('XP insuficiente para este prêmio.');
   }
+}
 
-  const dh = e.target.closest('[data-delete-habit]');
-  if (dh && confirm('Excluir este hábito?')) {
-    state.habits = state.habits.filter(x => x.id !== dh.dataset.deleteHabit);
-    save();
-  }
-
-  const ds = e.target.closest('[data-delete-study]');
-  if (ds && confirm('Excluir esta trilha?')) {
-    state.studies = state.studies.filter(x => x.id !== ds.dataset.deleteStudy);
-    save();
-  }
-
-  const ss = e.target.closest('[data-study-session]');
-  if (ss) {
-    const item = state.studies.find(x => x.id === ss.dataset.studySession);
-    if (item) {
-      item.minutes += 15;
-      award(15, `Estudo registrado: ${item.title} (15 min)`);
-      toast('15 min de estudo registrados! +15 XP');
-      save();
-    }
-  }
-
-  const buy = e.target.closest('[data-buy-reward]');
-  if (buy) {
-    const reward = state.rewards.find(x => x.id === buy.dataset.buyReward);
-    const available = state.xp - state.spentXp;
-    if (reward) {
-      if (available >= reward.cost) {
-        if (confirm(`Resgatar "${reward.title}" por ${reward.cost} XP?`)) {
-          state.spentXp += reward.cost;
-          logActivity(`Recompensa resgatada: ${reward.title}`, -reward.cost);
-          toast('Recompensa resgatada com sucesso! Aproveite!');
-          save();
-        }
-      } else {
-        toast('XP insuficiente para este resgate.');
-      }
-    }
-  }
-
-  const rescue = e.target.closest('[data-rescue]');
-  if (rescue) {
-    state.missions.unshift({ id: uid(), title: rescue.dataset.rescue, category: 'Autocuidado', xp: 5, due: '', created: today(), done: false });
-    save();
-    switchView('missions');
-    toast('Missão de resgate adicionada!');
-  }
-
-  const mins = e.target.closest('[data-minutes]');
-  if (mins) setTimer(Number(mins.dataset.minutes));
-});
-
-document.getElementById('quickMission').onclick = () => { switchView('missions'); document.getElementById('missionTitle').focus(); };
-document.getElementById('addMissionBtn').onclick = () => document.getElementById('missionTitle').focus();
-document.getElementById('addHabitBtn').onclick = () => document.getElementById('habitTitle').focus();
-document.getElementById('addStudyBtn').onclick = () => document.getElementById('studyTitle').focus();
-document.getElementById('addRewardBtn').onclick = () => document.getElementById('rewardTitle').focus();
-
-document.getElementById('missionForm').addEventListener('submit', e => {
+document.getElementById('missionForm').onsubmit = (e) => {
   e.preventDefault();
   const title = document.getElementById('missionTitle').value.trim();
+  const category = document.getElementById('missionCategory').value;
+  const xp = Number(document.getElementById('missionXP').value);
   if (!title) return;
-  state.missions.unshift({
-    id: uid(),
-    title,
-    category: document.getElementById('missionCategory').value,
-    xp: Number(document.getElementById('missionDifficulty').value),
-    due: document.getElementById('missionDue').value,
-    created: today(),
-    done: false
-  });
+  state.missions.unshift({ id: Date.now().toString(), title, category, xp, done: false });
   e.target.reset();
-  save();
-  toast('Missão criada com sucesso.');
-});
+  saveState();
+  showToast('Missão criada.');
+};
 
-document.getElementById('habitForm').addEventListener('submit', e => {
+document.getElementById('habitForm').onsubmit = (e) => {
   e.preventDefault();
   const title = document.getElementById('habitTitle').value.trim();
   if (!title) return;
-  state.habits.push({
-    id: uid(),
-    title,
-    category: document.getElementById('habitCategory').value,
-    xp: Number(document.getElementById('habitXP').value),
-    logs: []
-  });
+  state.habits.push({ id: Date.now().toString(), title, xp: 15, logs: [] });
   e.target.reset();
-  save();
-  toast('Hábito adicionado.');
-});
+  saveState();
+  showToast('Hábito criado.');
+};
 
-document.getElementById('studyForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const title = document.getElementById('studyTitle').value.trim();
-  if (!title) return;
-  state.studies.push({
-    id: uid(),
-    title,
-    level: document.getElementById('studyLevel').value,
-    goal: Number(document.getElementById('studyGoal').value),
-    next: document.getElementById('studyNext').value.trim(),
-    minutes: 0
-  });
-  e.target.reset();
-  save();
-  toast('Trilha criada.');
-});
-
-document.getElementById('rewardForm').addEventListener('submit', e => {
+document.getElementById('rewardForm').onsubmit = (e) => {
   e.preventDefault();
   const title = document.getElementById('rewardTitle').value.trim();
   const cost = Number(document.getElementById('rewardCost').value);
   if (!title || !cost) return;
-  state.rewards.push({ id: uid(), title, cost });
+  state.rewards.push({ id: Date.now().toString(), title, cost });
   e.target.reset();
-  save();
-  toast('Recompensa adicionada à loja.');
-});
+  saveState();
+  showToast('Recompensa adicionada.');
+};
 
-document.getElementById('journalForm').addEventListener('submit', e => {
-  e.preventDefault();
-  state.journal.push({
-    id: uid(),
-    date: new Date().toISOString(),
-    mood: Number(document.getElementById('mood').value),
-    text: document.getElementById('journalText').value.trim(),
-    win: document.getElementById('journalWin').value.trim()
-  });
-  award(5, 'Registro no diário');
-  e.target.reset();
-  save();
-  toast('Registro salvo! +5 XP');
-});
+let timerSecs = 25 * 60, timerInterval = null, timerRunning = false;
+function updateTimerFace() {
+  const m = Math.floor(timerSecs / 60), s = timerSecs % 60;
+  document.getElementById('timerFace').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
 
-document.getElementById('focusForm').addEventListener('submit', e => {
-  e.preventDefault();
-  state.preferences.focusTask = document.getElementById('focusTask').value.trim();
-  state.preferences.focusNote = document.getElementById('focusNote').value.trim();
-  save();
-  toast('Intenção de foco salva.');
-});
+function toggleTimer() {
+  const btn = document.getElementById('timerStartBtn');
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    btn.textContent = '▶ Retomar Foco';
+    document.getElementById('timerStatus').textContent = 'Pausado';
+  } else {
+    timerRunning = true;
+    btn.textContent = '⏸ Pausar';
+    document.getElementById('timerStatus').textContent = 'Concentração total em andamento...';
+    timerInterval = setInterval(() => {
+      if (timerSecs > 0) {
+        timerSecs--;
+        updateTimerFace();
+      } else {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        btn.textContent = '▶ Iniciar Foco';
+        state.focusSessions.push({ date: todayStr(), mins: 25 });
+        state.xpTotal += 25;
+        showToast('Sessão de foco concluída! +25 XP');
+        saveState();
+        timerSecs = 25 * 60;
+        updateTimerFace();
+      }
+    }, 1000);
+  }
+}
 
-document.getElementById('profileForm').addEventListener('submit', e => {
-  e.preventDefault();
-  state.profile.name = document.getElementById('profileName').value.trim();
-  state.profile.goal = document.getElementById('profileGoal').value.trim();
-  state.profile.message = document.getElementById('settingMessage').value.trim() || 'Pequenos passos. Evolução real.';
-  save();
-  toast('Perfil atualizado com sucesso.');
-});
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSecs = 25 * 60;
+  updateTimerFace();
+  document.getElementById('timerStartBtn').textContent = '▶ Iniciar Foco';
+  document.getElementById('timerStatus').textContent = 'Pronto para iniciar foco absoluto';
+}
 
-document.getElementById('goSettings').onclick = () => switchView('settings');
-
-function exportData() {
+function exportBackup() {
   const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'nexus-backup-' + today() + '.json';
-  a.click();
+  const a = document.createElement('a'); a.href = url; a.download = `nexus_backup_${todayStr()}.json`; a.click();
   URL.revokeObjectURL(url);
-  document.getElementById('backupStatus').textContent = 'Backup exportado com sucesso!';
-  toast('Backup gerado.');
+  showToast('Backup gerado com sucesso.');
 }
-document.getElementById('exportBtn').onclick = exportData;
-document.getElementById('exportTop').onclick = exportData;
 
-document.getElementById('importFile').addEventListener('change', async e => {
-  const f = e.target.files[0];
-  if (!f) return;
-  try {
-    const obj = JSON.parse(await f.text());
-    if (!obj || !Array.isArray(obj.missions) || !Array.isArray(obj.habits) || typeof obj.xp !== 'number') throw new Error();
-    if (!confirm('Importar backup e substituir os dados atuais?')) return;
-    state = obj;
-    save();
-    document.getElementById('backupStatus').textContent = 'Backup importado com sucesso.';
-    toast('Dados restaurados!');
-  } catch {
-    toast('Erro ao ler o arquivo de backup.');
+function resetAllData() {
+  if (confirm('Tem a certeza absoluta? Todos os dados serão apagados.')) {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
   }
-  e.target.value = '';
-});
-
-document.getElementById('resetAll').onclick = () => {
-  if (confirm('Tem certeza absoluta? Isso apagará todos os seus dados.')) {
-    if (confirm('Última chance: você já fez o backup dos seus dados?')) {
-      state = defaults();
-      save();
-      toast('Progresso reiniciado.');
-    }
-  }
-};
-
-// Pomodoro Timer
-let timerDuration = 25 * 60, timerRemaining = timerDuration, timerInterval = null, timerEnd = null;
-function paintTimer() {
-  const s = Math.max(0, timerRemaining);
-  document.getElementById('timerFace').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
-}
-function setTimer(m) {
-  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-  timerDuration = m * 60;
-  timerRemaining = timerDuration;
-  timerEnd = null;
-  paintTimer();
-  document.getElementById('timerStatus').textContent = 'Pronto para começar';
-  document.getElementById('timerStart').textContent = '▶ Iniciar';
-}
-function finishTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  timerRemaining = 0;
-  timerEnd = null;
-  paintTimer();
-  document.getElementById('timerStatus').textContent = 'Sessão concluída!';
-  document.getElementById('timerStart').textContent = '▶ Iniciar';
-  const minutes = Math.max(1, Math.round(timerDuration / 60));
-  state.focusSessions.push({ id: uid(), date: today(), minutes, task: state.preferences.focusTask || 'Foco' });
-  const rewardXP = Math.max(5, Math.round(minutes / 5) * 5);
-  award(rewardXP, `Sessão de foco (${minutes} min)`);
-  save();
-  toast(`Foco concluído! +${rewardXP} XP`);
-}
-
-document.getElementById('timerStart').onclick = () => {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    timerRemaining = Math.max(0, Math.ceil((timerEnd - Date.now()) / 1000));
-    document.getElementById('timerStart').textContent = '▶ Continuar';
-    document.getElementById('timerStatus').textContent = 'Pausado';
-    paintTimer();
-    return;
-  }
-  if (timerRemaining <= 0) timerRemaining = timerDuration;
-  timerEnd = Date.now() + timerRemaining * 1000;
-  document.getElementById('timerStart').textContent = '⏸ Pausar';
-  document.getElementById('timerStatus').textContent = 'Concentre-se no seu objetivo...';
-  timerInterval = setInterval(() => {
-    timerRemaining = Math.max(0, Math.ceil((timerEnd - Date.now()) / 1000));
-    paintTimer();
-    if (timerRemaining <= 0) finishTimer();
-  }, 250);
-};
-
-document.getElementById('timerReset').onclick = () => setTimer(Math.round(timerDuration / 60));
-
-if (state.preferences.focusTask) document.getElementById('focusTask').value = state.preferences.focusTask;
-if (state.preferences.focusNote) document.getElementById('focusNote').value = state.preferences.focusNote;
-
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
 }
 
 renderAll();
-})();
+updateTimerFace();
 </script>
 </body>
 </html>
