@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#030712">
-<title>NEXUS — Sistema Pessoal de Evolução</title>
+<title>NEXUS — Life OS & Evolution System</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #030712;
-  --surface: rgba(15, 23, 42, 0.85);
+  --surface: rgba(15, 23, 42, 0.82);
   --surface-solid: #0f172a;
-  --border: rgba(56, 189, 248, 0.18);
-  --border-focus: rgba(56, 189, 248, 0.6);
+  --border: rgba(56, 189, 248, 0.16);
+  --border-focus: rgba(56, 189, 248, 0.5);
   --primary: #38bdf8;
   --primary-glow: rgba(56, 189, 248, 0.25);
   --accent: #818cf8;
@@ -31,8 +31,8 @@
 body {
   margin: 0; background: var(--bg);
   background-image: 
-    radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(129, 140, 248, 0.06) 0%, transparent 40%);
+    radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(129, 140, 248, 0.08) 0%, transparent 45%);
   background-attachment: fixed; color: var(--text);
   font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh;
   padding-bottom: calc(var(--nav-height) + 35px);
@@ -40,12 +40,12 @@ body {
 
 .app { max-width: 680px; margin: 0 auto; padding: 16px; }
 
-/* Topbar Profissional */
+/* Topbar Elite */
 .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .logo {
   width: 44px; height: 44px; border-radius: 14px;
-  background: linear-gradient(135deg, #0284c7, #4f46e5);
+  background: linear-gradient(135deg, #0284c7, #6366f1);
   display: grid; place-items: center; font-family: 'Space Grotesk', sans-serif;
   font-weight: 700; font-size: 20px; color: #fff; box-shadow: 0 0 25px var(--primary-glow);
   border: 1px solid rgba(255,255,255,0.25);
@@ -61,7 +61,7 @@ body {
 }
 .icon-btn:hover { color: var(--text); border-color: var(--primary); }
 
-/* Dashboard Card Principal */
+/* Dashboard Card */
 .card {
   background: var(--surface); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
@@ -82,11 +82,11 @@ body {
 .progress-track { height: 10px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
 .progress-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8, #818cf8); border-radius: 99px; width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-/* Grid de Atributos RPG (Complexidade Real) */
-.attributes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-.attr-box { background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border); border-radius: 14px; padding: 12px 10px; text-align: center; }
-.attr-box .val { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: var(--primary); }
-.attr-box .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
+/* Atributos RPG Reais */
+.attributes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+.attr-box { background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border); border-radius: 14px; padding: 10px 6px; text-align: center; }
+.attr-box .val { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--primary); }
+.attr-box .lbl { font-size: 9.5px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
 
 /* Navegação Profissional (Bottom Bar) */
 .bottom-nav {
@@ -97,9 +97,9 @@ body {
 }
 .nav-btn {
   background: none; border: none; color: var(--muted); display: flex; flex-direction: column;
-  align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: 0.2s;
+  align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 6px 10px; cursor: pointer; transition: 0.2s;
 }
-.nav-btn .icon { font-size: 20px; }
+.nav-btn .icon { font-size: 19px; }
 .nav-btn.active { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
 
 /* Views */
@@ -110,7 +110,7 @@ body {
 .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin: 0; }
 
-/* Elementos de Tarefas / Hábitos / Loja */
+/* Cards de Tarefas/Hábitos */
 .item-card {
   background: rgba(3, 7, 18, 0.5); border: 1px solid var(--border); border-radius: 16px;
   padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; transition: 0.2s;
@@ -126,9 +126,9 @@ body {
 .item-title { font-weight: 600; font-size: 14px; }
 .item-meta { font-size: 11.5px; color: var(--muted); margin-top: 3px; display: flex; gap: 8px; align-items: center; }
 
-/* Botões e Formulários */
+/* Botões & Formulários */
 .btn {
-  background: linear-gradient(135deg, #0284c7, #4f46e5); color: #fff; border: none;
+  background: linear-gradient(135deg, #0284c7, #6366f1); color: #fff; border: none;
   border-radius: 14px; padding: 12px 18px; font-weight: 700; font-size: 13.5px;
   cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
   box-shadow: 0 6px 20px var(--primary-glow); transition: 0.2s;
@@ -145,7 +145,7 @@ body {
 }
 .input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); }
 
-/* Pomodoro Engine */
+/* Pomodoro Engine Avançado */
 .timer-display { font-family: 'Space Grotesk', sans-serif; font-size: 60px; font-weight: 700; text-align: center; margin: 20px 0; text-shadow: 0 0 25px var(--primary-glow); }
 .timer-controls { display: flex; gap: 10px; margin-top: 16px; }
 
@@ -167,7 +167,7 @@ body {
       <div class="logo">N</div>
       <div>
         <h1>NEXUS</h1>
-        <p>Elite Engine v4.0</p>
+        <p>Life OS Core v5.0</p>
       </div>
     </div>
     <div class="top-actions">
@@ -192,24 +192,28 @@ body {
       <div class="progress-fill" id="xpBar"></div>
     </div>
     <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; font-weight: 600;">
-      <span id="xpLabel">0 / 100 XP</span>
-      <span id="nextRankNotice">Próximo rank em 100 XP</span>
+      <span id="xpLabel">0 / 150 XP</span>
+      <span id="nextRankNotice">Evolução Constante</span>
     </div>
   </section>
 
   <!-- Atributos RPG Reais -->
   <div class="attributes-grid">
     <div class="attr-box">
-      <div class="val" id="attrFocus">0 XP</div>
+      <div class="val" id="attrFocus">0</div>
       <div class="lbl">⚡ Foco</div>
     </div>
     <div class="attr-box">
-      <div class="val" id="attrBody">0 XP</div>
-      <div class="lbl">🛡️ Vitalidade</div>
+      <div class="val" id="attrBody">0</div>
+      <div class="lbl">🛡️ Vigor</div>
     </div>
     <div class="attr-box">
-      <div class="val" id="attrMind">0 XP</div>
-      <div class="lbl">🧠 Sabedoria</div>
+      <div class="val" id="attrMind">0</div>
+      <div class="lbl">🧠 Mente</div>
+    </div>
+    <div class="attr-box">
+      <div class="val" id="attrWealth">0</div>
+      <div class="lbl">💎 Carreira</div>
     </div>
   </div>
 
@@ -236,23 +240,24 @@ body {
         <form id="missionForm">
           <div class="form-group">
             <label>O que precisa ser feito?</label>
-            <input class="input" id="missionTitle" placeholder="Ex: Entregar relatório trimestral" required>
+            <input class="input" id="missionTitle" placeholder="Ex: Fechar contrato ou finalizar projeto" required>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <div class="form-group">
               <label>Atributo Afetado</label>
               <select class="input" id="missionAttr">
-                <option value="focus">⚡ Foco & Produtividade</option>
-                <option value="body">🛡️ Vitalidade & Saúde</option>
-                <option value="mind">🧠 Sabedoria & Estudos</option>
+                <option value="focus">⚡ Foco</option>
+                <option value="body">🛡️ Vigor & Saúde</option>
+                <option value="mind">🧠 Mente & Sabedoria</option>
+                <option value="wealth">💎 Carreira & Finanças</option>
               </select>
             </div>
             <div class="form-group">
               <label>Recompensa XP</label>
               <select class="input" id="missionXP">
-                <option value="15">Fácil (15 XP)</option>
-                <option value="30" selected>Médio (30 XP)</option>
-                <option value="50">Difícil (50 XP)</option>
+                <option value="20">Fácil (20 XP)</option>
+                <option value="40" selected>Médio (40 XP)</option>
+                <option value="70">Difícil (70 XP)</option>
               </select>
             </div>
           </div>
@@ -269,14 +274,15 @@ body {
         <form id="habitForm">
           <div class="form-group">
             <label>Nome do Hábito</label>
-            <input class="input" id="habitTitle" placeholder="Ex: Meditar 10 minutos / Ler 15 páginas" required>
+            <input class="input" id="habitTitle" placeholder="Ex: Ler 20 páginas / Treinar" required>
           </div>
           <div class="form-group">
             <label>Atributo Associado</label>
             <select class="input" id="habitAttr">
-              <option value="mind">🧠 Sabedoria</option>
+              <option value="mind">🧠 Mente</option>
               <option value="focus">⚡ Foco</option>
-              <option value="body">🛡️ Vitalidade</option>
+              <option value="body">🛡️ Vigor</option>
+              <option value="wealth">💎 Carreira</option>
             </select>
           </div>
           <button class="btn" type="submit">＋ Adicionar Hábito</button>
@@ -301,11 +307,11 @@ body {
     <!-- VIEW: RECOMPENSAS -->
     <section class="view" id="view-rewards">
       <div class="section-header"><h2>Loja de Recompensas</h2></div>
-      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Utilize o seu XP conquistado com esforço real para destravar pausas e lazer sem culpa.</p>
+      <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">Utilize o seu XP conquistado para destravar pausas e lazer com merecimento real.</p>
       <div class="card" style="margin-bottom: 16px;">
         <form id="rewardForm">
           <div class="form-group"><label>Recompensa</label><input class="input" id="rewardTitle" placeholder="Ex: 1 Episódio de Série / Jogo" required></div>
-          <div class="form-group"><label>Custo em XP</label><input class="input" type="number" id="rewardCost" value="80" required></div>
+          <div class="form-group"><label>Custo em XP</label><input class="input" type="number" id="rewardCost" value="100" required></div>
           <button class="btn" type="submit">🎁 Adicionar Prémio</button>
         </form>
       </div>
@@ -316,7 +322,7 @@ body {
     <section class="view" id="view-settings">
       <div class="section-header"><h2>Definições & Dados</h2></div>
       <div class="card">
-        <p style="font-size: 13px; color: var(--muted); margin-top: 0;">O NEXUS opera 100% no seu dispositivo com criptografia local. Faça cópias de segurança periódicas.</p>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 0;">O NEXUS opera 100% no seu dispositivo com segurança local avançada.</p>
         <div style="display: grid; gap: 10px;">
           <button class="btn secondary" onclick="exportBackup()">↗ Exportar Backup Completo (JSON)</button>
           <label class="btn secondary" style="cursor:pointer; text-align:center;">📥 Importar Backup
@@ -329,7 +335,7 @@ body {
   </main>
 </div>
 
-<!-- Navegação Inferior Profissional -->
+<!-- Navegação Inferior -->
 <nav class="bottom-nav">
   <button class="nav-btn active" onclick="switchView('home')"><span class="icon">⌂</span><span>Início</span></button>
   <button class="nav-btn" onclick="switchView('missions')"><span class="icon">⚔️</span><span>Missões</span></button>
@@ -341,24 +347,24 @@ body {
 <div id="toast" class="toast"></div>
 
 <script>
-const STORAGE_KEY = 'nexus_elite_engine_v4';
+const STORAGE_KEY = 'nexus_life_os_v5';
 const todayStr = () => new Date().toISOString().slice(0, 10);
 
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
   xpTotal: 0,
   xpSpent: 0,
-  attributes: { focus: 0, body: 0, mind: 0 },
+  attributes: { focus: 0, body: 0, mind: 0, wealth: 0 },
   missions: [
-    { id: '1', title: 'Estruturar o planejamento estratégico da semana', attr: 'focus', xp: 30, done: false },
-    { id: '2', title: 'Treinamento físico de alta intensidade (30 min)', attr: 'body', xp: 30, done: false }
+    { id: '1', title: 'Estruturar o planejamento estratégico da semana', attr: 'focus', xp: 40, done: false },
+    { id: '2', title: 'Treinamento físico de alta intensidade (30 min)', attr: 'body', xp: 40, done: false }
   ],
   habits: [
-    { id: 'h1', title: 'Leitura técnica diária (15 min)', attr: 'mind', xp: 20, logs: [] },
-    { id: 'h2', title: 'Hidratação controlada (2L+)', attr: 'body', xp: 15, logs: [] }
+    { id: 'h1', title: 'Leitura técnica diária (15 min)', attr: 'mind', xp: 25, logs: [] },
+    { id: 'h2', title: 'Hidratação controlada (2L+)', attr: 'body', xp: 20, logs: [] }
   ],
   rewards: [
-    { id: 'r1', title: '1 Episódio de Série sem culpa', cost: 70 },
-    { id: 'r2', title: 'Lazer livre de 1 hora', cost: 120 }
+    { id: 'r1', title: '1 Episódio de Série sem culpa', cost: 80 },
+    { id: 'r2', title: 'Lazer livre de 1 hora', cost: 150 }
   ],
   focusSessions: []
 };
@@ -384,8 +390,8 @@ function switchView(id) {
 }
 
 function computeLevel() {
-  const level = Math.floor(state.xpTotal / 120) + 1;
-  const currentXP = state.xpTotal % 120;
+  const level = Math.floor(state.xpTotal / 150) + 1;
+  const currentXP = state.xpTotal % 150;
   const availableXP = state.xpTotal - state.xpSpent;
   const rank = level >= 20 ? 'Lenda Mítica' : level >= 12 ? 'Mestre Absoluto' : level >= 7 ? 'Veterano Elite' : level >= 3 ? 'Explorador' : 'Recruta';
   return { level, currentXP, availableXP, rank };
@@ -396,13 +402,14 @@ function renderAll() {
   document.getElementById('levelLabel').textContent = `Nível ${info.level}`;
   document.getElementById('rankPill').textContent = '◆ ' + info.rank;
   document.getElementById('statAvailableXP').textContent = info.availableXP;
-  document.getElementById('xpLabel').textContent = `${info.currentXP} / 120 XP`;
-  document.getElementById('xpBar').style.width = Math.min(100, (info.currentXP / 120) * 100) + '%';
+  document.getElementById('xpLabel').textContent = `${info.currentXP} / 150 XP`;
+  document.getElementById('xpBar').style.width = Math.min(100, (info.currentXP / 150) * 100) + '%';
 
   // Atributos RPG
-  document.getElementById('attrFocus').textContent = state.attributes.focus + ' XP';
-  document.getElementById('attrBody').textContent = state.attributes.body + ' XP';
-  document.getElementById('attrMind').textContent = state.attributes.mind + ' XP';
+  document.getElementById('attrFocus').textContent = state.attributes.focus;
+  document.getElementById('attrBody').textContent = state.attributes.body;
+  document.getElementById('attrMind').textContent = state.attributes.mind;
+  document.getElementById('attrWealth').textContent = state.attributes.wealth;
 
   // Missões
   const missionHTML = state.missions.length ? state.missions.map(m => `
@@ -500,7 +507,7 @@ function buyReward(id, cost) {
     showToast('Recompensa resgatada com sucesso! Aproveite!');
     saveState();
   } else {
-    showToast('XP insuficiente para este prémio.');
+    showToast('XP insuficiente para este prêmio.');
   }
 }
 
@@ -521,7 +528,7 @@ document.getElementById('habitForm').onsubmit = (e) => {
   const title = document.getElementById('habitTitle').value.trim();
   const attr = document.getElementById('habitAttr').value;
   if (!title) return;
-  state.habits.push({ id: Date.now().toString(), title, attr, xp: 20, logs: [] });
+  state.habits.push({ id: Date.now().toString(), title, attr, xp: 25, logs: [] });
   e.target.reset();
   saveState();
   showToast('Hábito criado.');
@@ -564,9 +571,9 @@ function toggleTimer() {
         clearInterval(timerInterval);
         timerRunning = false;
         btn.textContent = '▶ Iniciar Foco';
-        state.xpTotal += 40;
-        state.attributes.focus += 40;
-        showToast('Sessão de foco concluída! +40 XP (FOCO)');
+        state.xpTotal += 50;
+        state.attributes.focus += 50;
+        showToast('Sessão de foco concluída! +50 XP (FOCO)');
         saveState();
         timerSecs = 25 * 60;
         updateTimerFace();
